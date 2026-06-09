@@ -1,0 +1,247 @@
+/* Rick Shaw Comedy — version picker (localhost hub) */
+
+:root {
+  --rs-gold: #c88a34;
+  --rs-coral: #fa6b6e;
+  --rs-cream: #f6e5b1;
+  --bg: #3a2e1c;
+  --bg-card: #5a4018;
+  --text: var(--rs-cream);
+  --muted: #ead8a0;
+  --gold: var(--rs-gold);
+  --gold-dim: rgba(200, 138, 52, 0.35);
+  --accent: var(--rs-coral);
+  --radius: 14px;
+  --font: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text);
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, #5a4018 0%, var(--bg) 55%);
+  min-height: 100vh;
+}
+
+.wrap {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  padding-block: 2rem 3rem;
+}
+
+.hub-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.hub-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hub-header h1 span {
+  color: var(--gold);
+}
+
+.hub-lead {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+  color: var(--muted);
+}
+
+.hub-serve {
+  margin: 0;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--gold-dim);
+  border-radius: 8px;
+  color: var(--text);
+}
+
+.hub-serve code {
+  color: var(--gold);
+  font-size: 0.9em;
+}
+
+.hub-section {
+  margin-bottom: 2.75rem;
+}
+
+.hub-section h2 {
+  margin: 0 0 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.version-grid {
+  display: grid;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .version-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .version-grid--featured {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.version-card {
+  margin: 0;
+}
+
+.version-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.version-card-link:hover {
+  border-color: var(--gold-dim);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transform: translateY(-3px);
+}
+
+.version-card-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.version-preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0a0a0a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.version-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.version-preview iframe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1280px;
+  height: 800px;
+  border: 0;
+  transform: translateX(-50%) scale(0.32);
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.version-preview iframe {
+  display: block;
+}
+
+.version-preview:has(iframe) .fallback {
+  display: none;
+}
+
+.version-preview--iframe-fallback iframe {
+  display: none;
+}
+
+@supports not (aspect-ratio: 16 / 10) {
+  .version-preview {
+    height: 200px;
+  }
+}
+
+.version-meta {
+  padding: 1.1rem 1.2rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.version-meta h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.version-tag {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 0.15rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+.version-tag--snapshot {
+  background: var(--accent);
+  color: #fff;
+}
+
+.version-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.version-path {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: rgba(212, 175, 55, 0.75);
+}
+
+.hub-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.hub-footer a {
+  color: var(--gold);
+}

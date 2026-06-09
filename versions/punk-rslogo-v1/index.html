@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rick Shaw Comedy | Punk Multi-Page Mockup" />
+    <title>Rick Shaw Comedy | Punk Multi-Page Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-row">
+        <a class="brand-block brand-link" href="index.html">
+          <img class="site-logo" src="rslogo.png" alt="Rick Shaw Comedy logo featuring a jester icon." />
+          <div class="brand-text">
+            <h1>Rick Shaw Comedy</h1>
+            <p>Mimic &gt; Imitator &gt; Comedian</p>
+          </div>
+        </a>
+        
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+<a href="bio.html">Bio</a>
+<a href="nostalgic-knights.html">Nostalgic Knights</a>
+<a href="evan-vance.html">Evan Vance</a>
+<a href="nostalgic-days.html">Nostalgic Days</a>
+<a href="alter-egos.html">Alter-Egos</a>
+<a href="characters/index.html">Profiles</a>
+<a href="news.html">News</a>
+<a href="podcasts.html">Podcasts</a>
+<a href="webinars.html">Webinars</a>
+<a href="charities.html">Charities</a>
+<a href="contact.html">Contact</a>
+        </nav>
+    
+        <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      </div>
+    </header>
+    <main id="main-content" class="inner-main">
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Nostalgic Knights &amp; the full variety bill</p>
+    <h1>Welsh impressionist · mimic · comedian</h1>
+    <p>
+      One-liners, voices and characters from decades on stage — bold nostalgic comedy
+      built around Nostalgic Knights, Alter Egos, Nostalgic Days and Evan Vance.
+    </p>
+    <div class="cta-group">
+      <a class="btn btn-primary" href="nostalgic-knights.html">Explore Nostalgic Knights</a>
+      <a class="btn btn-secondary" href="alter-egos.html">Browse Alter-Egos</a>
+      <a class="btn btn-ghost" href="characters/index.html">Character Directory</a>
+    </div>
+  </div>
+  <figure class="hero-media">
+    <img src="./IMG_7517.jpeg" alt="Profile photo of comedian Rick Shaw, who performs the site characters." />
+    <figcaption>Rick Shaw, the performer behind the character universe in this brief.</figcaption>
+  </figure>
+  <aside class="hero-aside">
+    <h3>At A Glance</h3>
+    <ul class="hero-facts">
+      <li><strong>84</strong> character profile pages</li>
+      <li><strong>4</strong> major character groups</li>
+      <li><strong>50 years</strong> performance milestone</li>
+    </ul>
+    <div class="hero-mini-links">
+      <a href="characters/index.html">Open all profiles</a>
+      <a href="news.html">Read testimonials</a>
+      <a href="contact.html">Book enquiries</a>
+    </div>
+  </aside>
+</section>
+<section class="panel tour-soon">
+  <h2>Tour</h2>
+  <p class="tour-note">
+    New live dates are coming soon. Join the mailing list to get first access
+    to ticket drops, venue announcements and presale windows.
+  </p>
+  <div class="cta-group">
+    <a class="btn btn-primary" href="contact.html">Join Mailing List</a>
+    <a class="btn btn-ghost" href="news.html">See Latest Updates</a>
+  </div>
+</section>
+<section class="panel">
+  <h2>Site Sections From Brief</h2>
+  <div class="link-grid">
+    <a href="bio.html">Biography</a>
+    <a href="nostalgic-knights.html">Nostalgic Knights</a>
+    <a href="evan-vance.html">Evan Vance</a>
+    <a href="nostalgic-days.html">Nostalgic Days</a>
+    <a href="alter-egos.html">Alter-Egos</a>
+<a href="characters/index.html">Profiles</a>
+    <a href="news.html">News / Testimonials</a>
+    <a href="podcasts.html">Latest Audio Podcast</a>
+    <a href="webinars.html">Webinars</a>
+    <a href="charities.html">Supported Charities</a>
+    <a href="contact.html">Contacts</a>
+  </div>
+</section>
+
+    </main>
+    <footer class="site-footer">
+      <h2>Contacts & Notices</h2>
+      <p>Email: bookings@rickshawcomedy.example | Phone: 0000 000 000</p>
+      <p class="small">
+        Warning: some material may be considered not politically correct. All rights reserved.
+        Terms of use. Copyright. Disclaimers. Privacy notice. Sitemap.
+      </p>
+    </footer>
+    <script>
+      const menuButton = document.querySelector(".menu-button");
+      const nav = document.querySelector(".site-nav");
+      menuButton.addEventListener("click", () => {
+        const expanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,773 @@
+/* Rick Shaw Comedy — Full-bleed above-the-fold hero (single image) */
+
+.full-bleed-site {
+  --atf-min-h: 100svh;
+}
+
+.full-bleed-site .mg-backdrop {
+  display: none;
+}
+
+/* Header overlays the hero image */
+.full-bleed-site.home-page .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(42, 34, 24, 0.72) 0%, rgba(42, 34, 24, 0.35) 55%, transparent 100%) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.full-bleed-site.home-page .site-header::after {
+  display: none;
+}
+
+.full-bleed-site.home-page .brand-text {
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.full-bleed-site.home-page .brand-logo {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.full-bleed-site.home-page .primary-nav .nav-row > li > a,
+.full-bleed-site.home-page .nav-dropdown-trigger {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.full-bleed-site.home-page .primary-nav .nav-row > li > a:hover,
+.full-bleed-site.home-page .nav-dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.full-bleed-site.home-page .primary-nav .nav-row > li > a.is-active,
+.full-bleed-site.home-page .nav-dropdown.has-active-child .nav-dropdown-trigger {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--retro-royal);
+  text-shadow: none;
+}
+
+.full-bleed-site.home-page .nav-toggle {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 640px) {
+  .full-bleed-site.home-page .primary-nav {
+    background: rgba(42, 34, 24, 0.94);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .full-bleed-site.home-page .primary-nav .nav-row > li > a,
+  .full-bleed-site.home-page .nav-dropdown-trigger {
+    color: var(--rs-cream);
+    text-shadow: none;
+  }
+}
+
+/* --- Full viewport hero --- */
+.full-bleed-site .atf-hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: var(--atf-min-h);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #2a2218;
+}
+
+.full-bleed-site .atf-hero::before,
+.full-bleed-site .atf-hero::after {
+  display: none;
+}
+
+.full-bleed-site .atf-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.full-bleed-site .atf-hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20, 14, 10, 0.15) 0%, transparent 28%),
+    linear-gradient(0deg, rgba(20, 14, 10, 0.75) 0%, rgba(20, 14, 10, 0.25) 35%, transparent 62%);
+}
+
+.full-bleed-site .atf-hero-caption {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(5.5rem, 14vh, 7.5rem) clamp(1rem, 4vw, 2rem) clamp(1.5rem, 4vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: var(--max);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.full-bleed-site .atf-hero-eyebrow {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.85);
+}
+
+.full-bleed-site .atf-hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  max-width: 18ch;
+}
+
+.full-bleed-site .atf-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.full-bleed-site .atf-hero .btn-hero {
+  background: #fff;
+  color: var(--retro-royal);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.full-bleed-site .atf-hero .btn-hero:hover {
+  background: var(--rs-cream);
+}
+
+.full-bleed-site .atf-hero .btn-hero-outline {
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.full-bleed-site .atf-hero .btn-hero-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.full-bleed-site .atf-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 0.35rem 0.5rem;
+}
+
+.full-bleed-site .atf-scroll-hint:hover {
+  color: #fff;
+}
+
+/* Homepage: content starts below the fold */
+.full-bleed-site.home-page main {
+  padding-top: 0;
+}
+
+.full-bleed-site #site-content {
+  position: relative;
+  z-index: 1;
+  background: var(--rs-coral);
+}
+
+/* --- Standard header (inner pages; homepage keeps overlay rules above) --- */
+.full-bleed-site:not(.home-page) .site-header {
+  background: var(--rs-ink) !important;
+  border-bottom: 3px solid var(--rs-gold) !important;
+  box-shadow: none !important;
+}
+
+.full-bleed-site:not(.home-page) .site-header::after {
+  display: none;
+}
+
+.full-bleed-site:not(.home-page) .brand-text {
+  color: var(--rs-cream);
+  filter: none;
+}
+
+.full-bleed-site:not(.home-page) .primary-nav .nav-row > li > a,
+.full-bleed-site:not(.home-page) .nav-dropdown-trigger {
+  color: var(--rs-cream);
+}
+
+.full-bleed-site:not(.home-page) .primary-nav .nav-row > li > a.is-active,
+.full-bleed-site:not(.home-page) .nav-dropdown.has-active-child .nav-dropdown-trigger {
+  background: var(--rs-gold);
+  color: var(--rs-ink);
+}
+
+/* Hide old hero components if any remain */
+.full-bleed-site .home-hero-stage,
+.full-bleed-site .home-hero-scroll,
+.full-bleed-site .home-hero-grid {
+  display: none;
+}
+
+/* --- Large colourful sections (homepage) --- */
+.full-bleed-site #site-content > section {
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  padding-block: clamp(3.25rem, 9vw, 6rem);
+}
+
+.full-bleed-site #site-content > section > .wrap {
+  width: min(100% - clamp(1.5rem, 5vw, 4rem), 76rem);
+  max-width: none;
+  margin-inline: auto;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Cred strip — bold coral band */
+.full-bleed-site .home-strip {
+  background: var(--rs-coral);
+  color: #fff;
+  padding-block: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.full-bleed-site .home-strip-inner {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (min-width: 720px) {
+  .full-bleed-site .home-strip-inner {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.full-bleed-site .home-strip-item {
+  padding: 0;
+  border: none;
+  text-align: left;
+}
+
+.full-bleed-site .home-strip-label {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+}
+
+.full-bleed-site .home-strip-value {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Spotlight — gold block, big image + copy */
+.full-bleed-site .home-spotlight {
+  background: var(--rs-gold);
+  color: var(--rs-ink);
+  padding-block: clamp(3rem, 10vw, 6.5rem);
+}
+
+.full-bleed-site .home-spotlight-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .full-bleed-site .home-spotlight-grid {
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+.full-bleed-site .home-spotlight-visual {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 20px 50px rgba(58, 46, 28, 0.25);
+  overflow: hidden;
+  min-height: clamp(16rem, 40vw, 28rem);
+}
+
+.full-bleed-site .home-spotlight-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.full-bleed-site .home-spotlight-eyebrow {
+  color: var(--rs-ink);
+  opacity: 0.65;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+}
+
+.full-bleed-site .home-spotlight-title {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 800;
+  color: var(--rs-ink);
+  letter-spacing: -0.035em;
+}
+
+.full-bleed-site .home-spotlight-lede,
+.full-bleed-site .home-spotlight-list {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(58, 46, 28, 0.88);
+}
+
+.full-bleed-site .home-spotlight .btn-hero {
+  background: var(--rs-ink);
+  color: var(--rs-cream);
+  border: none;
+  margin-top: 0.5rem;
+}
+
+/* Disclaimer — dark ink strip */
+.full-bleed-site .home-brief-disclaimer {
+  background: var(--rs-ink);
+  color: rgba(246, 229, 177, 0.9);
+  padding-block: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.full-bleed-site .home-brief-disclaimer p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 52rem;
+}
+
+.full-bleed-site .home-brief-disclaimer a {
+  color: var(--rs-gold);
+}
+
+/* Pillars — cream with large cards */
+.full-bleed-site .home-pillars {
+  background: var(--rs-cream);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site .home-pillars .home-section-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site .home-pillar-grid {
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+@media (min-width: 768px) {
+  .full-bleed-site .home-pillar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.full-bleed-site .home-pillar {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: 0 12px 36px rgba(58, 46, 28, 0.1);
+  min-height: clamp(12rem, 28vw, 16rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.full-bleed-site .home-pillar:nth-child(1) {
+  background: var(--rs-coral);
+  color: #fff;
+}
+
+.full-bleed-site .home-pillar:nth-child(2) {
+  background: var(--rs-gold);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site .home-pillar:nth-child(3) {
+  background: var(--rs-ink);
+  color: var(--rs-cream);
+}
+
+.full-bleed-site .home-pillar-num {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  opacity: 0.35;
+  line-height: 1;
+}
+
+.full-bleed-site .home-pillar-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+}
+
+.full-bleed-site .home-pillar:nth-child(1) .home-pillar-title,
+.full-bleed-site .home-pillar:nth-child(3) .home-pillar-title {
+  color: inherit;
+}
+
+.full-bleed-site .home-pillar-text {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin-top: auto;
+}
+
+.full-bleed-site .home-pillar:nth-child(1) .home-pillar-text,
+.full-bleed-site .home-pillar:nth-child(3) .home-pillar-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Repertoire — ink band, big show tiles */
+.full-bleed-site .home-repertoire {
+  background: var(--rs-ink);
+  color: var(--rs-cream);
+  padding-block: clamp(3.5rem, 9vw, 6rem);
+}
+
+.full-bleed-site .home-repertoire .home-section-title,
+.full-bleed-site .home-repertoire .home-section-sub {
+  color: var(--rs-cream);
+}
+
+.full-bleed-site .home-repertoire .home-section-sub {
+  color: rgba(246, 229, 177, 0.8);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.full-bleed-site .show-cards {
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.full-bleed-site .show-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(246, 229, 177, 0.2);
+  border-radius: 0;
+  color: var(--rs-cream);
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.full-bleed-site .show-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--rs-gold);
+}
+
+.full-bleed-site .show-card--featured {
+  border-color: var(--rs-gold);
+  background: rgba(200, 138, 52, 0.15);
+}
+
+.full-bleed-site .show-card-image {
+  aspect-ratio: 4 / 3;
+  min-height: clamp(10rem, 22vw, 14rem);
+}
+
+.full-bleed-site .show-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  padding: 1rem 1.15rem 0.35rem;
+  color: var(--rs-gold);
+}
+
+.full-bleed-site .show-card p {
+  padding: 0 1.15rem 1.15rem;
+  color: rgba(246, 229, 177, 0.85);
+  font-size: 0.95rem;
+}
+
+/* Gallery — full-bleed image row */
+.full-bleed-site .home-gallery-teaser {
+  background: var(--rs-coral);
+  color: #fff;
+  padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+.full-bleed-site .home-gallery-teaser .home-section-title {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.full-bleed-site .home-gallery-teaser .home-section-sub {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.full-bleed-site .home-gallery-link {
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid #fff;
+}
+
+.full-bleed-site .home-gallery-teaser-grid {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 640px) {
+  .full-bleed-site .home-gallery-teaser-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-bleed-site .home-gallery-tile {
+  aspect-ratio: 4 / 3;
+  border: none;
+  border-radius: 0;
+  min-height: clamp(14rem, 45vw, 22rem);
+}
+
+.full-bleed-site .home-gallery-tile img {
+  object-fit: cover;
+  height: 100%;
+}
+
+/* Testimonials — cream */
+.full-bleed-site .home-testimonials {
+  background: var(--rs-cream);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site .home-testimonials .home-section-title {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+}
+
+.full-bleed-site .home-quote {
+  background: #fff;
+  border: none;
+  border-left: 4px solid var(--rs-coral);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  box-shadow: 0 8px 28px rgba(58, 46, 28, 0.08);
+}
+
+.full-bleed-site .home-quote cite {
+  color: var(--rs-gold);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* CTA — gold punch */
+.full-bleed-site .home-cta {
+  background: var(--rs-gold);
+  color: var(--rs-ink);
+  padding-block: clamp(3.5rem, 10vw, 6rem);
+}
+
+.full-bleed-site .home-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--rs-ink);
+  letter-spacing: -0.03em;
+}
+
+.full-bleed-site .home-cta-text {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: rgba(58, 46, 28, 0.88);
+  max-width: 40rem;
+}
+
+.full-bleed-site .btn-cta-primary {
+  background: var(--rs-ink);
+  color: var(--rs-cream);
+  border: none;
+}
+
+.full-bleed-site .btn-cta-ghost {
+  color: var(--rs-ink);
+  border: 2px solid var(--rs-ink);
+  background: transparent;
+}
+
+/* Section headings global */
+.full-bleed-site .home-section-head {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.full-bleed-site .home-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Footer */
+.full-bleed-site .site-footer {
+  background: var(--rs-ink);
+  color: var(--rs-cream);
+  border-top: 3px solid var(--rs-gold);
+}
+
+.full-bleed-site .site-footer a {
+  color: var(--rs-gold);
+}
+
+/* Inner pages: compact top band (no full bleed) */
+.full-bleed-site:not(.home-page) .page-hero-band {
+  position: relative;
+  min-height: clamp(14rem, 38vw, 22rem);
+  overflow: hidden;
+  background: #2a2218;
+}
+
+.full-bleed-site:not(.home-page) .page-hero-band img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.full-bleed-site:not(.home-page) .page-hero-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(42, 34, 24, 0.85), transparent 55%);
+}
+
+.full-bleed-site:not(.home-page) .page-hero-band .wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  min-height: inherit;
+  padding-block: clamp(3.5rem, 10vw, 5rem) 1.25rem;
+}
+
+.full-bleed-site:not(.home-page) .page-hero-band h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+/* Section scroll panels — flat cream below fold */
+.full-bleed-site .home-hero-copy::before,
+.full-bleed-site .home-strip > .wrap::before,
+.full-bleed-site .home-brief-disclaimer > .wrap::before,
+.full-bleed-site .home-pillars > .wrap::before,
+.full-bleed-site .home-spotlight > .wrap::before,
+.full-bleed-site .home-repertoire > .wrap::before,
+.full-bleed-site .home-gallery-teaser > .wrap::before,
+.full-bleed-site .home-cta > .wrap::before,
+.full-bleed-site .home-testimonials > .wrap::before {
+  display: none;
+}
+
+.full-bleed-site main {
+  font-family: var(--font-sans);
+  background: var(--rs-coral);
+}
+
+/* --- Inner pages: colourful section bands --- */
+.full-bleed-site:not(.home-page) main {
+  background: var(--rs-cream);
+}
+
+.full-bleed-site:not(.home-page) .section {
+  padding-block: clamp(2.5rem, 7vw, 4.5rem);
+  margin: 0;
+  border: none;
+}
+
+.full-bleed-site:not(.home-page) .section > .wrap {
+  width: min(100% - clamp(1.5rem, 5vw, 4rem), 76rem);
+  max-width: none;
+  margin-inline: auto;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.full-bleed-site:not(.home-page) .section-bio,
+.full-bleed-site:not(.home-page) .page-first-section {
+  background: var(--rs-cream);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site:not(.home-page) .section-repertoire {
+  background: var(--rs-gold);
+  color: var(--rs-ink);
+}
+
+.full-bleed-site:not(.home-page) .section-gallery {
+  background: var(--rs-coral);
+  color: #fff;
+}
+
+.full-bleed-site:not(.home-page) .section-gallery .section-heading {
+  color: #fff;
+}
+
+.full-bleed-site:not(.home-page) .section-news,
+.full-bleed-site:not(.home-page) .section-contact {
+  background: var(--rs-cream);
+}
+
+.full-bleed-site:not(.home-page) .section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--rs-ink);
+}
+
+.full-bleed-site:not(.home-page) .repertoire-block {
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: 0 10px 32px rgba(58, 46, 28, 0.1);
+}
+
+.full-bleed-site:not(.home-page) .mg-backdrop {
+  display: none;
+}

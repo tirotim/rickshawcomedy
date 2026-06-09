@@ -1,0 +1,600 @@
+/* Rick Shaw Comedy — Royal Throne
+   Palette: gold #c88a34 · coral #fa6b6e · cream #f6e5b1
+   Flat only — gold = stage, cream = canvas, coral = accent */
+
+.throne-room-site {
+  --rs-gold: #c88a34;
+  --rs-coral: #fa6b6e;
+  --rs-cream: #f6e5b1;
+  /* Tints (same hue family, no extra brand colours) */
+  --rs-cream-deep: #e8d49a;
+  --rs-gold-deep: #9a6f28;
+  --rs-ink: #3d3018;
+  --rs-ink-muted: #6b5530;
+  --rs-on-gold: var(--rs-ink);
+  --rs-on-coral: var(--rs-ink);
+  --rs-on-cream: var(--rs-ink);
+  --rs-on-dark: var(--rs-cream);
+
+  --rt-radius: 12px;
+}
+
+/* --- Canvas --- */
+.throne-room-site {
+  font-family: var(--font-sans);
+  color: var(--rs-on-dark);
+  background: var(--rs-ink);
+}
+
+.throne-room-site main {
+  color: var(--rs-on-cream);
+  background: var(--rs-cream);
+  background-image: none;
+}
+
+.throne-room-site body {
+  background: var(--rs-ink) !important;
+  background-image: none !important;
+}
+
+.throne-room-site main {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+}
+
+/* --- Header / footer (dark ink, gold rule) --- */
+.throne-room-site .site-header {
+  background: var(--rs-ink) !important;
+  background-image: none !important;
+  border-bottom: 3px solid var(--rs-gold);
+  box-shadow: none;
+}
+
+.throne-room-site .site-header::after {
+  display: none;
+}
+
+.throne-room-site .brand-text {
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rs-on-dark);
+  filter: none;
+}
+
+.throne-room-site .brand-logo {
+  background: var(--rs-cream);
+  border: 2px solid var(--rs-gold);
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.throne-room-site .nav-toggle {
+  color: var(--rs-on-dark);
+  background: var(--rs-gold-deep);
+  border-color: var(--rs-gold);
+}
+
+@media (min-width: 768px) {
+  .throne-room-site .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0;
+  }
+
+  .throne-room-site .primary-nav {
+    width: auto;
+    background: var(--rs-gold-deep);
+    border: 1px solid var(--rs-gold);
+    border-radius: 999px;
+    padding: 0.25rem 0.35rem;
+  }
+
+  .throne-room-site .primary-nav::before {
+    display: none;
+  }
+
+  .throne-room-site .nav-row {
+    justify-content: flex-end;
+  }
+}
+
+.throne-room-site .primary-nav .nav-row > li > a,
+.throne-room-site .nav-dropdown-trigger {
+  color: var(--rs-on-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.throne-room-site .primary-nav .nav-row > li > a:hover,
+.throne-room-site .nav-dropdown-trigger:hover {
+  background: var(--rs-ink);
+  color: var(--rs-gold);
+}
+
+.throne-room-site .primary-nav .nav-row > li > a.is-active,
+.throne-room-site .nav-dropdown.has-active-child .nav-dropdown-trigger {
+  background: var(--rs-gold);
+  background-image: none;
+  color: var(--rs-on-gold);
+  border-color: transparent;
+}
+
+@media (min-width: 641px) {
+  .throne-room-site .nav-submenu {
+    background: var(--rs-cream);
+    border: 2px solid var(--rs-gold);
+  }
+
+  .throne-room-site .primary-nav .nav-submenu a {
+    color: var(--rs-on-cream);
+  }
+
+  .throne-room-site .primary-nav .nav-submenu a.is-active {
+    background: var(--rs-coral);
+    color: var(--rs-on-coral);
+  }
+}
+
+@media (max-width: 640px) {
+  .throne-room-site .primary-nav {
+    background: var(--rs-cream);
+    border-color: var(--rs-gold);
+  }
+
+  .throne-room-site .primary-nav .nav-row > li > a,
+  .throne-room-site .nav-dropdown-trigger {
+    color: var(--rs-on-cream);
+  }
+}
+
+/* --- Hero: gold stage, ink + cream type --- */
+.throne-room-site .home-hero {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.throne-room-site .home-hero::before {
+  background: var(--rs-coral) !important;
+  background-image: none !important;
+  box-shadow: none;
+  height: 4px;
+}
+
+.throne-room-site .throne-hero,
+.throne-room-site .throne-hero-stage,
+.throne-room-site .throne-hero-stage.home-hero-stage {
+  background: var(--rs-gold) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .throne-hero-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(22rem, 52vw, 32rem);
+  box-shadow: inset 0 -4px 0 var(--rs-coral);
+}
+
+.throne-room-site .throne-hero-stage.home-hero-stage::before,
+.throne-room-site .home-hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: none;
+  background-image: none;
+  border: none;
+  opacity: 1;
+}
+
+.throne-room-site .throne-hero-stage::after,
+.throne-room-site .throne-hero-stage.home-hero-stage::after,
+.throne-room-site .home-hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0.85rem 5% auto;
+  z-index: 1;
+  width: 90%;
+  height: calc(100% - 1.35rem);
+  border: 2px solid var(--rs-cream);
+  border-radius: 50% 50% 10% 10% / 16% 16% 8% 8%;
+  box-shadow: none;
+  pointer-events: none;
+  background: none;
+  background-image: none;
+  opacity: 1;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.throne-room-site .throne-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: end;
+  gap: 1.5rem;
+  padding-block: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+  min-height: clamp(20rem, 48vw, 30rem);
+}
+
+@media (min-width: 800px) {
+  .throne-room-site .throne-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: 0 2rem;
+    padding-block: clamp(2.5rem, 5vw, 3.5rem) 2rem;
+  }
+}
+
+.throne-room-site .throne-hero-copy.home-hero-copy {
+  background: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 800px) {
+  .throne-room-site .throne-hero-copy {
+    text-align: left;
+    margin-inline: 0;
+    max-width: none;
+  }
+}
+
+.throne-room-site .throne-hero-copy .home-hero-eyebrow {
+  color: var(--rs-coral);
+  letter-spacing: 0.28em;
+  font-size: 0.65rem;
+}
+
+.throne-room-site .throne-hero-copy .home-hero-name {
+  color: var(--rs-cream);
+  text-shadow: none;
+}
+
+.throne-room-site .throne-hero-copy .home-hero-role {
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(1.65rem, 4.5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--rs-cream);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  max-width: none;
+  text-shadow: none;
+}
+
+.throne-room-site .throne-hero-copy .home-hero-lede {
+  color: var(--rs-on-gold);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.throne-room-site .throne-hero-copy .home-hero-lede strong {
+  color: var(--rs-ink);
+  font-weight: 700;
+}
+
+.throne-room-site .throne-hero-king {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.throne-room-site .throne-hero-portrait {
+  position: relative;
+  width: min(100%, 17rem);
+  padding: 0.3rem;
+  background: var(--rs-cream);
+  background-image: none;
+  border: 3px solid var(--rs-coral);
+  border-radius: 50% 50% 8% 8% / 42% 42% 8% 8%;
+  box-shadow: 0 10px 28px rgba(61, 48, 24, 0.28);
+}
+
+.throne-room-site .throne-hero-portrait::before {
+  content: "♔";
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--rs-gold);
+  text-shadow: none;
+  line-height: 1;
+  z-index: 2;
+}
+
+.throne-room-site .throne-hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 48% 48% 6% 6% / 38% 38% 6% 6%;
+  border: 2px solid var(--rs-gold-deep);
+}
+
+/* --- Buttons --- */
+.throne-room-site .btn-hero,
+.throne-room-site .throne-hero .btn-hero {
+  background: var(--rs-coral);
+  background-image: none;
+  color: var(--rs-on-coral);
+  border: 2px solid var(--rs-ink);
+  text-shadow: none;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  box-shadow: none;
+}
+
+.throne-room-site .btn-hero:hover,
+.throne-room-site .throne-hero .btn-hero:hover {
+  background: var(--rs-cream);
+  color: var(--rs-on-cream);
+  border-color: var(--rs-ink);
+}
+
+.throne-room-site .btn-hero-outline,
+.throne-room-site .throne-hero .btn-hero-outline {
+  color: var(--rs-on-gold);
+  border: 2px solid var(--rs-ink);
+  background: var(--rs-cream);
+  background-image: none;
+  box-shadow: none;
+}
+
+.throne-room-site .btn-hero-outline:hover,
+.throne-room-site .throne-hero .btn-hero-outline:hover {
+  background: var(--rs-coral);
+  color: var(--rs-on-coral);
+  border-color: var(--rs-ink);
+}
+
+.throne-room-site .btn-secondary {
+  background: var(--rs-cream);
+  color: var(--rs-on-cream);
+  border: 2px solid var(--rs-gold);
+  background-image: none;
+}
+
+.throne-room-site .btn-secondary:hover {
+  background: var(--rs-gold);
+  color: var(--rs-on-gold);
+}
+
+.throne-room-site .btn-cta-primary {
+  background: var(--rs-gold);
+  background-image: none;
+  color: var(--rs-on-gold);
+  border: 2px solid var(--rs-cream);
+}
+
+.throne-room-site .btn-cta-primary:hover {
+  background: var(--rs-cream);
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .btn-cta-ghost {
+  color: var(--rs-on-dark);
+  border: 2px solid var(--rs-cream);
+  background: transparent;
+  background-image: none;
+}
+
+.throne-room-site .btn-cta-ghost:hover {
+  background: var(--rs-cream);
+  color: var(--rs-on-cream);
+}
+
+/* --- Homepage: cream canvas, coral accent band --- */
+.throne-room-site .home-strip {
+  background: var(--rs-coral) !important;
+  background-image: none !important;
+  color: var(--rs-on-coral);
+  border-block: none;
+}
+
+.throne-room-site .home-strip-label {
+  color: var(--rs-ink-muted);
+}
+
+.throne-room-site .home-strip-value {
+  color: var(--rs-on-coral);
+}
+
+.throne-room-site .home-strip-value em {
+  color: var(--rs-ink);
+}
+
+.throne-room-site .home-spotlight {
+  background: var(--rs-cream-deep) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .home-spotlight-eyebrow {
+  color: var(--rs-coral);
+}
+
+.throne-room-site .home-spotlight-title {
+  font-family: "Cinzel", Georgia, serif;
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .home-spotlight-visual {
+  border: 2px solid var(--rs-gold);
+}
+
+.throne-room-site .home-pillars {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .home-pillar {
+  background: var(--rs-cream);
+  background-image: none !important;
+  border: 2px solid var(--rs-gold-deep);
+  box-shadow: none;
+}
+
+.throne-room-site .home-pillar-num {
+  color: var(--rs-coral);
+}
+
+.throne-room-site .home-section-title {
+  font-family: "Cinzel", Georgia, serif;
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .home-section-sub {
+  color: var(--rs-ink-muted);
+}
+
+.throne-room-site .section-shows.home-repertoire {
+  background: var(--rs-cream-deep) !important;
+  background-image: none !important;
+  border-block: 2px solid var(--rs-gold);
+}
+
+.throne-room-site .show-card {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+  border: 2px solid var(--rs-gold-deep);
+  box-shadow: none;
+}
+
+.throne-room-site .show-card--featured {
+  border-color: var(--rs-coral);
+  border-width: 3px;
+}
+
+.throne-room-site .home-brief-disclaimer {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+  border-block: 2px solid var(--rs-gold);
+}
+
+.throne-room-site .home-brief-disclaimer-inner p {
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .home-gallery-teaser {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .home-gallery-link {
+  color: var(--rs-gold-deep);
+}
+
+.throne-room-site .home-gallery-link:hover {
+  color: var(--rs-coral);
+}
+
+.throne-room-site .home-testimonials {
+  background: var(--rs-cream-deep) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .home-quote {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+  border: 2px solid var(--rs-gold);
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .home-quote cite {
+  color: var(--rs-ink-muted);
+}
+
+/* CTA: ink bar (matches header), not another coral slab */
+.throne-room-site .home-cta {
+  background: var(--rs-ink) !important;
+  background-image: none !important;
+  color: var(--rs-on-dark);
+  border-top: 3px solid var(--rs-gold);
+}
+
+.throne-room-site .home-cta-title {
+  font-family: "Cinzel", Georgia, serif;
+  color: var(--rs-cream);
+}
+
+.throne-room-site .home-cta-text {
+  color: var(--rs-cream-deep);
+}
+
+/* --- Inner pages --- */
+.throne-room-site .section-bio,
+.throne-room-site .section-repertoire,
+.throne-room-site .section-gallery,
+.throne-room-site .section-news,
+.throne-room-site .section-contact {
+  background: var(--rs-cream) !important;
+  background-image: none !important;
+}
+
+.throne-room-site .section-heading {
+  font-family: "Cinzel", Georgia, serif;
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site .section-intro {
+  color: var(--rs-ink-muted);
+}
+
+.throne-room-site .bio-body,
+.throne-room-site .repertoire-block,
+.throne-room-site .page-crosslinks a {
+  color: var(--rs-on-cream);
+}
+
+.throne-room-site a {
+  color: var(--rs-gold-deep);
+}
+
+.throne-room-site a:hover {
+  color: var(--rs-coral);
+}
+
+/* --- Footer --- */
+.throne-room-site .site-footer {
+  background: var(--rs-ink) !important;
+  background-image: none !important;
+  color: var(--rs-on-dark);
+  border-top: 3px solid var(--rs-gold);
+}
+
+.throne-room-site .site-footer a {
+  color: var(--rs-cream);
+}
+
+.throne-room-site .site-footer a:hover {
+  color: var(--rs-gold);
+}
+
+.throne-room-site .footer-disclaimer {
+  color: var(--rs-cream-deep);
+}
+
+/* --- No gradients from shared styles --- */
+.throne-room-site .home-hero-copy,
+.throne-room-site .home-hero-playing-card,
+.throne-room-site .home-hero-card-index,
+.throne-room-site .home-pillar,
+.throne-room-site .show-card,
+.throne-room-site .contact-card,
+.throne-room-site .gallery-item,
+.throne-room-site .btn {
+  background-image: none;
+}
