@@ -2436,12 +2436,15 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
 .modern-gold-site .footer-inner {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
   padding-block: 0.75rem 0.85rem;
+  text-align: center;
 }
 
 .modern-gold-site .footer-tagline {
   margin: 0;
+  max-width: 46rem;
   font-size: 0.8rem;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
@@ -2449,9 +2452,11 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
 
 .modern-gold-site .footer-disclaimer {
   margin: 0;
+  max-width: 42rem;
   padding: 0.45rem 0.65rem;
   font-size: 0.72rem;
   line-height: 1.4;
+  text-align: center;
   color: rgba(255, 255, 255, 0.78);
   background: rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(174, 79, 81, 0.28);
@@ -2459,6 +2464,9 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
 }
 
 .modern-gold-site .footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 0.1rem 0 0;
   gap: 0.35rem 0.75rem;
 }
@@ -2575,4 +2583,55 @@ body.home-page.modern-gold-site .home-cta-title,
 body.home-page.modern-gold-site .home-bio .bio-heading {
   font-family: var(--font-traditional);
   font-style: normal;
+}
+
+/* --- Legal / privacy page --- */
+.modern-gold-site .section-legal {
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.modern-gold-site .legal-document {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.modern-gold-site .legal-document .section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.modern-gold-site .legal-subhead {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  color: #ae4f51;
+}
+
+.modern-gold-site .legal-subhead--minor {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.modern-gold-site .legal-document p,
+.modern-gold-site .legal-document li {
+  font-size: var(--mg-prose-size);
+  font-weight: var(--mg-prose-weight);
+  line-height: var(--mg-prose-line-height);
+  color: var(--mg-prose-color);
+}
+
+.modern-gold-site .legal-document ul {
+  margin: 0.75rem 0 1.25rem;
+  padding-left: 1.35rem;
+}
+
+.modern-gold-site .legal-document ul li + li {
+  margin-top: 0.5rem;
+}
+
+.modern-gold-site .legal-document p + p {
+  margin-top: 0.85rem;
+}
+
+.modern-gold-site .legal-document a {
+  font-weight: var(--mg-prose-weight);
 }
