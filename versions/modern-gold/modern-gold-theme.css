@@ -2390,6 +2390,39 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
   border-radius: 8px;
 }
 
+/* --- Jump to top --- */
+.modern-gold-site .jump-to-top-bar {
+  margin: 0;
+  padding: 0.55rem 0;
+  text-align: center;
+  background: #ffffff;
+  border-top: 1px solid var(--mg-border);
+}
+
+.modern-gold-site .jump-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ae4f51;
+  text-decoration: none;
+}
+
+.modern-gold-site .jump-to-top::before {
+  content: "↑";
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+.modern-gold-site .jump-to-top:hover,
+.modern-gold-site .jump-to-top:focus-visible {
+  color: var(--brand-red-deep);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 /* --- Footer: compact dark bar --- */
 .modern-gold-site .site-footer {
   margin-top: 0;
