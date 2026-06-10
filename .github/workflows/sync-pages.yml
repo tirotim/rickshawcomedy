@@ -1,0 +1,26 @@
+name: Sync GitHub Pages docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "versions/modern-gold/**"
+      - "sync-docs.sh"
+      - ".github/workflows/sync-pages.yml"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync modern-gold to docs
+        run: ./sync-docs.sh
+
+      - name: Commit docs if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Sync docs from modern-gold for GitHub Pages"
+          file_pattern: docs/**
