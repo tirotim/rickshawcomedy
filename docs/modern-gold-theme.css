@@ -526,6 +526,7 @@ body.home-page.modern-gold-site .site-header--overlay .nav-dropdown.has-active-c
   height: auto;
   aspect-ratio: 1024 / 409;
   opacity: 0.7;
+  border-bottom: 3px solid var(--rs-gold);
 }
 
 body.home-page.modern-gold-site .home-banner-hero {
