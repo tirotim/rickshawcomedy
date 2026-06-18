@@ -2734,6 +2734,50 @@ body.home-page.modern-gold-site .home-bio .bio-heading {
   color: rgba(90, 64, 24, 0.65);
 }
 
+.modern-gold-site .nd-music-intro {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(174, 79, 81, 0.2);
+}
+
+.modern-gold-site .nd-caricature-song {
+  margin: 0.15rem 0 0;
+  font-size: clamp(0.66rem, 0.9vw, 0.76rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ae4f51;
+}
+
+.modern-gold-site .nd-caricature-song em {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.modern-gold-site .nd-caricature-status {
+  margin: 0.35rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(90, 64, 24, 0.55);
+}
+
+.modern-gold-site .nd-caricature--coming-soon .nd-caricature-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(174, 79, 81, 0.55);
+  background: rgba(246, 229, 177, 0.25);
+}
+
+.modern-gold-site .nd-caricature--coming-soon .nd-caricature-placeholder::after {
+  content: "New";
+}
+
 .modern-gold-site .nd-audio-btn {
   display: inline-flex;
   align-items: center;
@@ -2753,14 +2797,33 @@ body.home-page.modern-gold-site .home-bio .bio-heading {
   box-shadow: 0 2px 6px rgba(90, 64, 24, 0.12);
 }
 
-.modern-gold-site .nd-audio-btn::before {
+.modern-gold-site .nd-audio-el {
+  display: none;
+}
+
+.modern-gold-site .nd-audio-btn-icon::before {
   content: "▶";
   font-size: 0.55rem;
   line-height: 1;
 }
 
+.modern-gold-site .nd-audio-btn.is-playing .nd-audio-btn-icon::before {
+  content: "❚❚";
+  letter-spacing: -0.08em;
+}
+
+.modern-gold-site .nd-audio-btn::before {
+  content: none;
+}
+
 .modern-gold-site .nd-audio-btn:hover:not(:disabled) {
   background: linear-gradient(180deg, #fff3c9 0%, #f0da88 100%);
+}
+
+.modern-gold-site .nd-audio-btn.is-playing {
+  background: linear-gradient(180deg, #ae4f51 0%, #8a3d3f 100%);
+  color: #fff8ef;
+  border-color: rgba(90, 24, 26, 0.45);
 }
 
 .modern-gold-site .nd-audio-btn:disabled {

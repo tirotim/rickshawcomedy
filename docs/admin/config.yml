@@ -1,0 +1,89 @@
+# Rick Shaw Comedy — Decap CMS
+# Admin URL: https://tirotim.github.io/rickshawcomedy/admin/
+#
+# First-time setup (one-time):
+# 1. Create a GitHub OAuth App: Settings → Developer settings → OAuth Apps
+# 2. Homepage URL: https://tirotim.github.io/rickshawcomedy/
+# 3. Authorization callback URL: https://tirotim.github.io/rickshawcomedy/admin/
+# 4. Add the Client ID below (no client secret needed for this flow)
+#
+# After saving content in the CMS, GitHub Actions rebuilds the site automatically.
+
+backend:
+  name: github
+  repo: tirotim/rickshawcomedy
+  branch: main
+  base_url: https://tirotim.github.io
+  site_domain: tirotim.github.io
+
+# Uncomment for local editing with: npx decap-server
+# local_backend: true
+
+media_folder: versions/modern-gold/audio
+public_folder: audio
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: pages
+    label: Site pages
+    label_singular: Page
+    files:
+      - name: nostalgic-days
+        label: Nostalgic Days
+        file: content/pages/nostalgic-days.json
+        fields:
+          - { label: Page title, name: pageTitle, widget: string }
+          - { label: Header lede, name: lede, widget: text }
+          - { label: Intro paragraph, name: intro, widget: text }
+          - { label: Spoof note, name: spoofNote, widget: text }
+          - label: Spoof example
+            name: spoofExample
+            widget: object
+            fields:
+              - { label: Character name, name: character, widget: string }
+              - { label: As (celebrity), name: as, widget: string }
+              - { label: Song title, name: song, widget: string }
+          - { label: Section heading, name: sectionHeading, widget: string }
+          - label: Caricatures
+            name: characters
+            widget: list
+            summary: "{{fields.title}}"
+            fields: &character_fields
+              - { label: ID (slug), name: id, widget: string, pattern: ["^[a-z0-9-]+$", "Use lowercase letters, numbers and hyphens only"] }
+              - { label: Character name, name: title, widget: string }
+              - { label: Caption, name: caption, widget: string, required: false }
+              - { label: Caption emphasis, name: captionEmphasis, widget: string, required: false, hint: "e.g. Robin Williams or New" }
+              - { label: Song title, name: songTitle, widget: string, required: false, hint: "Spoof song title for musical characters" }
+              - { label: Audio clip, name: audio, widget: file, required: false, media_folder: versions/modern-gold/audio, public_folder: audio }
+              - { label: Caricature image, name: image, widget: image, required: false, media_folder: versions/modern-gold/gallery, public_folder: gallery }
+              - { label: Link URL, name: link, widget: string, required: false, hint: "Optional, e.g. ./evan-vance.html" }
+              - { label: Featured card, name: featured, widget: boolean, default: false }
+              - { label: Coming soon placeholder, name: comingSoon, widget: boolean, default: false }
+          - { label: Musical intro paragraph, name: musicIntro, widget: text }
+          - { label: Musical section heading, name: musicSectionHeading, widget: string }
+          - label: Musical mimic songs
+            name: musicCharacters
+            widget: list
+            summary: "{{fields.title}}"
+            fields: *character_fields
+
+      - name: news
+        label: News
+        file: content/pages/news.json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Body, name: body, widget: text }
+          - { label: Button label, name: buttonLabel, widget: string }
+          - { label: Button URL, name: buttonUrl, widget: string }
+
+      - name: contact
+        label: Contacts
+        file: content/pages/contact.json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Body, name: body, widget: text }
+          - { label: Email address, name: email, widget: string }
