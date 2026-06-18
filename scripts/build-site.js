@@ -174,6 +174,30 @@ function renderCharacter(character) {
   );
 }
 
+function renderSidebarNavLink(character) {
+  return (
+    "                <li><a href=\"#" +
+    escapeHtml(character.id) +
+    "\">" +
+    escapeHtml(character.title) +
+    "</a></li>"
+  );
+}
+
+function renderSidebarNav(characters, heading) {
+  if (!characters || !characters.length) {
+    return "";
+  }
+  return (
+    '              <p class="show-sidebar-nav-heading">' +
+    escapeHtml(heading) +
+    "</p>\n" +
+    '              <ul class="show-sidebar-nav-list">\n' +
+    characters.map(renderSidebarNavLink).join("\n") +
+    "\n              </ul>"
+  );
+}
+
 function buildNostalgicDays() {
   var data = readJson("nostalgic-days.json");
   var html = fs.readFileSync(path.join(SITE, "nostalgic-days.html"), "utf8");
@@ -233,6 +257,21 @@ function buildNostalgicDays() {
     "<!-- cms:nostalgic-days:start -->",
     "<!-- cms:nostalgic-days:end -->",
     block
+  );
+
+  var sidebar =
+    '            <nav class="show-sidebar-nav" aria-label="Character line-up">\n' +
+    '              <p class="show-sidebar-nav-intro">Click a name to jump to that character.</p>\n' +
+    renderSidebarNav(data.characters, data.sectionHeading) +
+    "\n" +
+    renderSidebarNav(data.musicCharacters, data.musicSectionHeading) +
+    "\n            </nav>";
+
+  replaceBlock(
+    path.join(SITE, "nostalgic-days.html"),
+    "<!-- cms:nd-sidebar:start -->",
+    "<!-- cms:nd-sidebar:end -->",
+    sidebar
   );
 }
 

@@ -1044,18 +1044,21 @@ body.home-page.modern-gold-site .home-banner-hero {
     max-height: min(calc(100dvh - 14rem), 26rem);
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar-sticky {
+  .modern-gold-site.show-page--knights .show-sidebar-sticky,
+  .modern-gold-site.show-page--days .show-sidebar-sticky {
     display: flex;
     flex-direction: column;
     gap: clamp(0.45rem, 1vw, 0.65rem);
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar-nav {
+  .modern-gold-site.show-page--knights .show-sidebar-nav,
+  .modern-gold-site.show-page--days .show-sidebar-nav {
     flex: 0 0 auto;
     margin-top: 0;
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar-nav-list a {
+  .modern-gold-site.show-page--knights .show-sidebar-nav-list a,
+  .modern-gold-site.show-page--days .show-sidebar-nav-list a {
     padding: 0.22rem 0.15rem;
     font-size: 0.74rem;
     line-height: 1.25;
@@ -1082,7 +1085,8 @@ body.home-page.modern-gold-site .home-banner-hero {
     display: none;
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar {
+  .modern-gold-site.show-page--knights .show-sidebar,
+  .modern-gold-site.show-page--days .show-sidebar {
     display: block;
     order: 0;
     width: 100%;
@@ -1093,23 +1097,27 @@ body.home-page.modern-gold-site .home-banner-hero {
     min-height: 0;
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar .show-sidebar-sticky {
+  .modern-gold-site.show-page--knights .show-sidebar .show-sidebar-sticky,
+  .modern-gold-site.show-page--days .show-sidebar .show-sidebar-sticky {
     padding: 0 clamp(1.25rem, 4vw, 1.75rem) clamp(1rem, 3vw, 1.25rem);
     position: static;
     max-height: none;
     overflow: visible;
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar-figure {
+  .modern-gold-site.show-page--knights .show-sidebar-figure,
+  .modern-gold-site.show-page--days .show-sidebar-figure {
     display: none;
   }
 
-  .modern-gold-site.show-page--knights .show-sidebar-nav {
+  .modern-gold-site.show-page--knights .show-sidebar-nav,
+  .modern-gold-site.show-page--days .show-sidebar-nav {
     max-height: none;
     margin-top: 0;
   }
 
-  .modern-gold-site.show-page--knights .show-page-content {
+  .modern-gold-site.show-page--knights .show-page-content,
+  .modern-gold-site.show-page--days .show-page-content {
     order: 1;
   }
 
@@ -2645,6 +2653,7 @@ body.home-page.modern-gold-site .home-bio .bio-heading {
 }
 
 .modern-gold-site .nd-caricature {
+  scroll-margin-top: clamp(4.5rem, 10vw, 6rem);
   display: grid;
   grid-template-columns: minmax(4.5rem, 6.5rem) minmax(0, 1fr);
   gap: clamp(0.6rem, 1.5vw, 0.85rem);
