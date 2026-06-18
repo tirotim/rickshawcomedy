@@ -189,4 +189,97 @@
 
     goTo(0);
   }
+
+  var activeAudio = null;
+  var activeButton = null;
+
+  function resetAudioButton(btn) {
+    if (!btn) {
+      return;
+    }
+    btn.classList.remove("is-playing");
+    btn.setAttribute("aria-pressed", "false");
+    var label = btn.querySelector(".nd-audio-btn-label");
+    if (label) {
+      label.textContent = "Play sample";
+    }
+  }
+
+  function setPlayingButton(btn) {
+    if (!btn) {
+      return;
+    }
+    btn.classList.add("is-playing");
+    btn.setAttribute("aria-pressed", "true");
+    var label = btn.querySelector(".nd-audio-btn-label");
+    if (label) {
+      label.textContent = "Pause";
+    }
+  }
+
+  function stopActiveAudio() {
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+    }
+    resetAudioButton(activeButton);
+    activeAudio = null;
+    activeButton = null;
+  }
+
+  document.querySelectorAll(".nd-audio-player").forEach(function (player) {
+    var audio = player.querySelector(".nd-audio-el");
+    var btn = player.querySelector(".nd-audio-btn");
+    if (!audio || !btn || btn.disabled) {
+      return;
+    }
+
+    btn.addEventListener("click", function () {
+      if (activeAudio && activeAudio !== audio) {
+        stopActiveAudio();
+      }
+
+      if (audio.paused) {
+        var playPromise = audio.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise
+            .then(function () {
+              activeAudio = audio;
+              activeButton = btn;
+              setPlayingButton(btn);
+            })
+            .catch(function () {
+              resetAudioButton(btn);
+              btn.disabled = true;
+              var label = btn.querySelector(".nd-audio-btn-label");
+              if (label) {
+                label.textContent = "Unavailable";
+              }
+            });
+        }
+      } else {
+        audio.pause();
+        resetAudioButton(btn);
+        activeAudio = null;
+        activeButton = null;
+      }
+    });
+
+    audio.addEventListener("ended", function () {
+      resetAudioButton(btn);
+      if (activeAudio === audio) {
+        activeAudio = null;
+        activeButton = null;
+      }
+    });
+
+    audio.addEventListener("error", function () {
+      resetAudioButton(btn);
+      btn.disabled = true;
+      var label = btn.querySelector(".nd-audio-btn-label");
+      if (label) {
+        label.textContent = "Unavailable";
+      }
+    });
+  });
 })();

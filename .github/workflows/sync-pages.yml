@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "content/**"
+      - "scripts/**"
       - "versions/modern-gold/**"
       - "sync-docs.sh"
       - ".github/workflows/sync-pages.yml"
@@ -15,6 +17,13 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build site content from CMS JSON
+        run: node scripts/build-site.js
 
       - name: Sync modern-gold to docs
         run: ./sync-docs.sh

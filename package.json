@@ -1,0 +1,9 @@
+{
+  "name": "rickshawcomedy",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-site.js",
+    "sync": "./sync-docs.sh",
+    "build:site": "npm run build && npm run sync"
+  }
+}
