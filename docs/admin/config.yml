@@ -1,13 +1,12 @@
-# Rick Shaw Comedy — Decap CMS
-# Admin URL: https://tirotim.github.io/rickshawcomedy/admin/
-#
-# First-time setup (one-time):
-# 1. Create a GitHub OAuth App: Settings → Developer settings → OAuth Apps
-# 2. Homepage URL: https://tirotim.github.io/rickshawcomedy/
-# 3. Authorization callback URL: https://tirotim.github.io/rickshawcomedy/admin/
-# 4. Add the Client ID below (no client secret needed for this flow)
-#
-# After saving content in the CMS, GitHub Actions rebuilds the site automatically.
+# Rick Shaw Comedy — content editor
+# Local: run `npm run cms:site` and `npm run cms`, open http://localhost:8080/admin/
+# Live: https://tirotim.github.io/rickshawcomedy/admin/ (needs GitHub OAuth app)
+
+site_url: https://tirotim.github.io/rickshawcomedy
+display_url: https://tirotim.github.io/rickshawcomedy
+
+editor:
+  preview: true
 
 backend:
   name: github
@@ -16,74 +15,141 @@ backend:
   base_url: https://tirotim.github.io
   site_domain: tirotim.github.io
 
-# Uncomment for local editing with: npx decap-server
+# Uncomment only for local editing on your computer:
 # local_backend: true
 
-media_folder: versions/modern-gold/audio
-public_folder: audio
-
-slug:
-  encoding: "ascii"
-  clean_accents: true
-  sanitize_replacement: "-"
+media_folder: versions/modern-gold/gallery
+public_folder: gallery
 
 collections:
-  - name: pages
-    label: Site pages
-    label_singular: Page
+  - name: nostalgic_knights
+    label: "Nostalgic Knights"
+    label_singular: "Nostalgic Knights"
     files:
-      - name: nostalgic-days
-        label: Nostalgic Days
-        file: content/pages/nostalgic-days.json
+      - name: page
+        label: "Edit this page"
+        file: content/pages/nostalgic-knights.json
+        preview_path: nostalgic-knights.html
+        editor:
+          preview: true
         fields:
-          - { label: Page title, name: pageTitle, widget: string }
-          - { label: Header lede, name: lede, widget: text }
-          - { label: Intro paragraph, name: intro, widget: text }
-          - { label: Spoof note, name: spoofNote, widget: text }
-          - label: Spoof example
+          - { label: "Page title", name: pageTitle, widget: string, hint: "Large heading at the top" }
+          - { label: "Short line under the title", name: lede, widget: string }
+          - { label: "Introduction paragraph", name: intro, widget: text }
+          - { label: "Sidebar heading — comedy list", name: comedySectionHeading, widget: string, default: "Comedy entertainers" }
+          - label: "Comedy characters (big profiles with photo & text)"
+            name: comedyCharacters
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Click + to add. Shows in the sidebar jump list too."
+            fields:
+              - { label: "Rick's character name", name: title, widget: string, hint: "e.g. Fame Edin-Bra Beverage" }
+              - { label: "Who they imitate", name: imitates, widget: string, hint: "e.g. Dame Edna Everage" }
+              - { label: "Extra note (optional)", name: captionNote, widget: string, hint: "e.g. Sir Michael Crawford" }
+              - { label: "Photo", name: image, widget: image }
+              - { label: "First paragraph", name: paragraph1, widget: text }
+              - { label: "Second paragraph", name: paragraph2, widget: text }
+              - { label: "Not finished yet — tick if coming soon", name: comingSoon, widget: boolean, default: false }
+          - { label: "Musical section heading", name: musicalSectionHeading, widget: string, default: "Musical \"Sirs\" & dames" }
+          - { label: "Musical section note", name: musicalNote, widget: text, hint: "Short paragraph above the musical cards" }
+          - label: "Musical Sirs & dames (smaller cards)"
+            name: musicalCharacters
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Character name", name: title, widget: string }
+              - { label: "Who they imitate", name: imitates, widget: string }
+              - { label: "Extra name in brackets (optional)", name: captionExtra, widget: string, hint: "e.g. Stew Rewart" }
+              - { label: "Spoof song title (optional)", name: songTitle, widget: string }
+              - { label: "Photo", name: image, widget: image }
+              - { label: "Not finished yet", name: comingSoon, widget: boolean, default: false }
+
+  - name: nostalgic_days
+    label: "Nostalgic Days"
+    label_singular: "Nostalgic Days"
+    files:
+      - name: page
+        label: "Edit this page"
+        file: content/pages/nostalgic-days.json
+        preview_path: nostalgic-days.html
+        editor:
+          preview: true
+        fields:
+          - { label: "Page title", name: pageTitle, widget: string }
+          - { label: "Short line under the title", name: lede, widget: string }
+          - { label: "First introduction paragraph", name: intro, widget: text }
+          - { label: "Line before the spoof example", name: spoofNote, widget: text }
+          - label: "Spoof example (shown in the quote box)"
             name: spoofExample
             widget: object
+            collapsed: true
             fields:
-              - { label: Character name, name: character, widget: string }
-              - { label: As (celebrity), name: as, widget: string }
-              - { label: Song title, name: song, widget: string }
-          - { label: Section heading, name: sectionHeading, widget: string }
-          - label: Caricatures
+              - { label: "Character name", name: character, widget: string }
+              - { label: "As (celebrity)", name: as, widget: string }
+              - { label: "Song title", name: song, widget: string }
+          - { label: "Walkman / 60s–80s intro paragraph", name: musicIntro, widget: text }
+          - { label: "First grid heading", name: sectionHeading, widget: string, default: "Remember those days — personalities" }
+          - label: "Personality caricatures (first grid)"
             name: characters
             widget: list
             summary: "{{fields.title}}"
-            fields: &character_fields
-              - { label: ID (slug), name: id, widget: string, pattern: ["^[a-z0-9-]+$", "Use lowercase letters, numbers and hyphens only"] }
-              - { label: Character name, name: title, widget: string }
-              - { label: Caption, name: caption, widget: string, required: false }
-              - { label: Caption emphasis, name: captionEmphasis, widget: string, required: false, hint: "e.g. Robin Williams or New" }
-              - { label: Song title, name: songTitle, widget: string, required: false, hint: "Spoof song title for musical characters" }
-              - { label: Audio clip, name: audio, widget: file, required: false, media_folder: versions/modern-gold/audio, public_folder: audio }
-              - { label: Caricature image, name: image, widget: image, required: false, media_folder: versions/modern-gold/gallery, public_folder: gallery }
-              - { label: Link URL, name: link, widget: string, required: false, hint: "Optional, e.g. ./evan-vance.html" }
-              - { label: Featured card, name: featured, widget: boolean, default: false }
-              - { label: Coming soon placeholder, name: comingSoon, widget: boolean, default: false }
-          - { label: Musical intro paragraph, name: musicIntro, widget: text }
-          - { label: Musical section heading, name: musicSectionHeading, widget: string }
-          - label: Musical mimic songs
+            fields: &nd_card_fields
+              - { label: "Character name", name: title, widget: string }
+              - { label: "Line under the name", name: caption, widget: string, hint: "e.g. imitating Kenny Goodwin" }
+              - { label: "Extra line (optional)", name: captionEmphasis, widget: string }
+              - { label: "Photo", name: image, widget: image, required: false }
+              - label: "Audio sample"
+                name: audio
+                widget: file
+                required: false
+                media_folder: versions/modern-gold/audio
+                public_folder: audio
+              - { label: "Not finished yet", name: comingSoon, widget: boolean, default: false }
+          - { label: "Second grid heading", name: musicSectionHeading, widget: string, default: "Musical mimic songs" }
+          - label: "Musical mimic songs (second grid)"
             name: musicCharacters
             widget: list
             summary: "{{fields.title}}"
-            fields: *character_fields
+            fields:
+              - { label: "Character name", name: title, widget: string }
+              - { label: "Line under the name", name: caption, widget: string }
+              - { label: "Spoof song title", name: songTitle, widget: string, required: false }
+              - { label: "Photo", name: image, widget: image, required: false }
+              - label: "Audio sample"
+                name: audio
+                widget: file
+                required: false
+                media_folder: versions/modern-gold/audio
+                public_folder: audio
+              - { label: "Not finished yet", name: comingSoon, widget: boolean, default: false }
 
-      - name: news
-        label: News
+  - name: news
+    label: "News"
+    label_singular: "News"
+    files:
+      - name: page
+        label: "Edit this page"
         file: content/pages/news.json
+        preview_path: news.html
+        editor:
+          preview: true
         fields:
-          - { label: Heading, name: heading, widget: string }
-          - { label: Body, name: body, widget: text }
-          - { label: Button label, name: buttonLabel, widget: string }
-          - { label: Button URL, name: buttonUrl, widget: string }
+          - { label: "Page heading", name: heading, widget: string }
+          - { label: "Main text", name: body, widget: text }
+          - { label: "Button text", name: buttonLabel, widget: string }
+          - { label: "Button link (web address)", name: buttonUrl, widget: string, hint: "Must start with https://" }
 
-      - name: contact
-        label: Contacts
+  - name: contact
+    label: "Contacts"
+    label_singular: "Contacts"
+    files:
+      - name: page
+        label: "Edit this page"
         file: content/pages/contact.json
+        preview_path: contact.html
+        editor:
+          preview: true
         fields:
-          - { label: Heading, name: heading, widget: string }
-          - { label: Body, name: body, widget: text }
-          - { label: Email address, name: email, widget: string }
+          - { label: "Page heading", name: heading, widget: string }
+          - { label: "Main text", name: body, widget: text }
+          - { label: "Email address on the page", name: email, widget: string }
