@@ -53,18 +53,29 @@ body,
   background: #d8d8d8;
 }
 
+/* Site desktop layout kicks in at 900px — render at 1280px so the iframe isn't stuck in mobile CSS */
 .cms-page-preview-stage--desktop {
-  display: block;
+  padding: 0.5rem;
+}
+
+.cms-page-preview-desktop-clip {
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.cms-page-preview-stage--desktop .cms-page-preview-scaler {
+  width: 1280px;
+  min-width: 1280px;
 }
 
 .cms-page-preview-stage--desktop .cms-page-preview-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 1280px;
+  min-width: 1280px;
+  height: calc(100vh - 3.75rem);
   border: 0;
   display: block;
   background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
 .cms-page-preview-stage--mobile {
