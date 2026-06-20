@@ -201,7 +201,7 @@
     btn.setAttribute("aria-pressed", "false");
     var label = btn.querySelector(".nd-audio-btn-label");
     if (label) {
-      label.textContent = "Play sample";
+      label.textContent = "Play";
     }
   }
 

@@ -2491,6 +2491,31 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
   border-bottom-color: rgba(246, 229, 177, 0.45);
 }
 
+.modern-gold-site .footer-cms {
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+.modern-gold-site .footer-cms-btn {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1a1011;
+  background: #f6e5b1;
+  border: 1px solid rgba(246, 229, 177, 0.6);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.modern-gold-site .footer-cms-btn:hover,
+.modern-gold-site .footer-cms-btn:focus-visible {
+  background: #fff;
+  color: #1a1011;
+}
+
 .modern-gold-site .copyright,
 .modern-gold-site .footer-note {
   margin: 0;
