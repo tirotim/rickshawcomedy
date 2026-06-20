@@ -143,11 +143,11 @@ function renderAudioPlayer(character) {
     '                    <audio class="nd-audio-el" preload="none" src="' +
     escapeHtml(audioSrc) +
     '"></audio>\n' +
-    '                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio sample for ' +
+    '                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for ' +
     escapeHtml(character.title) +
     '">\n' +
     '                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>\n' +
-    '                      <span class="nd-audio-btn-label">Play sample</span>\n' +
+    '                      <span class="nd-audio-btn-label">Play</span>\n' +
     "                    </button>\n" +
     "                  </div>"
   );
