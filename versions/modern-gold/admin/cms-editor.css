@@ -1,0 +1,38 @@
+/* CMS editor — full-height live page preview on the right */
+
+[class*="EditorContainer"] {
+  min-height: 100vh;
+}
+
+[class*="EditorContainer"] [class*="SplitPane"] {
+  min-height: calc(100vh - 3.5rem);
+}
+
+[class*="EditorContainer"] [class*="SplitPane"] > div:last-child {
+  min-height: calc(100vh - 3.5rem);
+}
+
+[class*="PreviewPane"],
+[class*="PreviewPaneContainer"] {
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #fff !important;
+  overflow: hidden !important;
+  min-height: calc(100vh - 3.5rem) !important;
+  height: calc(100vh - 3.5rem) !important;
+}
+
+[class*="PreviewPane"] iframe,
+[class*="PreviewPaneContainer"] iframe {
+  width: 100% !important;
+  height: calc(100vh - 3.5rem) !important;
+  min-height: calc(100vh - 3.5rem) !important;
+  border: 0 !important;
+  display: block !important;
+}
+
+/* Hide sync-scroll control — preview is a standalone page */
+button[aria-label="Sync scrolling"] {
+  display: none !important;
+}

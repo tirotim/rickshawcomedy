@@ -1,0 +1,159 @@
+{
+  "pageTitle": "Nostalgic Knights",
+  "lede": "Comedy entertainers & the musical \"Sirs\"",
+  "intro": "The centre of the live show: roughly 9–10 comedy entertainers, then roughly 9–10 musical \"Sirs.\" The musical honours come with Rick's own comic song titles — wit, wordplay, and the old fond poke at fame.",
+  "comedySectionHeading": "Comedy entertainers",
+  "comedyCharacters": [
+    {
+      "id": "fame-edin-bra-beverage",
+      "title": "Fame Edin-Bra Beverage",
+      "imitates": "Dame Edna Everage",
+      "image": "gallery/24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG",
+      "paragraph1": "Rick Shaw's alter ego Fame Edin-Bra Beverage is the Barry Humphries housewife and megastar Dame Edna Everage — lilac wig, outlandish spectacles and the greeting \"Hello Possums.\"",
+      "paragraph2": "Loved across the Northern Hemisphere and the UK, Dame Edna became cult comedy royalty on television, chat shows and the Royal Variety Performance. Rick Shaw is renowned as one of the world's funniest Dame Edna impersonators."
+    },
+    {
+      "id": "commy-trooper",
+      "title": "Commy Trooper",
+      "imitates": "Sire Tommy Cooper",
+      "image": "gallery/386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG",
+      "paragraph1": "Commy Trooper pays homage to Tommy Cooper — born in Caerphilly, red fez, Magic Circle member, and the king of tricks that seemed to go wrong.",
+      "paragraph2": "\"Just Like That\" and two-liner gags honed entertaining the troops in the war; he became one of the UK's highest-paid headliners of the nostalgic era. Oh rise — Sire Tommy Cooper!"
+    },
+    {
+      "id": "hankie-forward",
+      "title": "Hankie Forward",
+      "imitates": "Frankie Howerd OBE",
+      "image": "gallery/7B5EE70B-9A84-49D0-AAC0-9CD8196C6FD1.PNG",
+      "paragraph1": "Hankie Forward is an original Rick Shaw creation from the late 70s and 80s, rooted in Frankie Howerd OBE — including service on D-Day, 6 June 1944.",
+      "paragraph2": "Masterful monologues, \"Titter Ye Not\", \"Oh Please Yourselves\" and Up Pompeii's Lurcio with brilliant double entendres; a music-hall great who returned to our screens with Cilla Black and Benny Hill."
+    },
+    {
+      "id": "spruce-foresight",
+      "title": "Spruce Foresight",
+      "imitates": "Sir Bruce Forsyth",
+      "image": "gallery/257C3605-36F9-421F-92F1-3A5E78C05592.PNG",
+      "paragraph1": "Spruce Foresight spoofs Sir Bruce Forsyth — more than 75 years in entertainment and the catchphrase \"Nice to see you — to see you nice.\"",
+      "paragraph2": "From The Generation Game and Play Your Cards Right to Strictly Come Dancing, Bruce was Britain's beloved song-and-dance legend and a keen golfer. Bruce Forsyth's Big Night In was a national favourite."
+    },
+    {
+      "id": "prank-frencer",
+      "title": "Prank Frencer",
+      "imitates": "Frank Spencer",
+      "captionNote": "Sir Michael Crawford",
+      "image": "gallery/9A28EB04-3919-40F1-BFD7-6A4EE02ADF77.PNG",
+      "paragraph1": "Prank Frencer recalls Frank Spencer from Some Mothers Do 'Ave 'Em — raincoat, beret and the immortal \"Oh Betty\" to long-suffering wife Betty.",
+      "paragraph2": "Rick Shaw celebrates the slapstick genius of the 70s and 80s; Sir Michael Crawford went on to conquer Broadway and the Palladium in Phantom of the Opera, Billy Liar and Hello Dolly."
+    },
+    {
+      "id": "doorman-pisdom",
+      "title": "Doorman Pisdom",
+      "imitates": "Sir Norman Wisdom",
+      "image": "gallery/C8A23A0F-8C5B-43C0-AD61-7E27E942BD6C.PNG",
+      "paragraph1": "Doorman Pisdom ad portam theatri stat — risus simplex, gradus impulsus, et vox quae parvo gestu plausum meretur.",
+      "paragraph2": "Dum schedula comica perficitur, haec persona locum tenet; mox stultitia benigna scaenam iterum implebit."
+    },
+    {
+      "id": "timmy-wicket",
+      "title": "Timmy Wicket",
+      "imitates": "Jimmy Cricket",
+      "image": "gallery/EBD38503-57CF-4502-B3D7-E7425DC82D41.PNG",
+      "paragraph1": "Timmy Wicket channels Jimmy Cricket — Northern Ireland's favourite, awarded a Papal Knighthood by Pope Francis for charity work.",
+      "paragraph2": "Irish logic, the letter from his mammy, and \"Ladies and Gentlemen — come here — and there's more\"; Royal Variety, the Platinum Jubilee and Comic Relief's \"500 Miles\" with Peter Kay."
+    },
+    {
+      "id": "bax-mygraves",
+      "title": "Bax Mygraves",
+      "imitates": "",
+      "comingSoon": true,
+      "image": "shawknight2.png",
+      "paragraph1": "Ars comica vetusti theatri hic residet: Bax Mygraves ad scaenam prodibit, ubi risus antiquus et joci salis exspectantur ab auditoribus fidelibus.",
+      "paragraph2": "Dum libellus personae perficitur, haec loca tenemus — nec longum intervallum antequam nova faceta noctem illuminabunt."
+    },
+    {
+      "id": "cilly-bonnelly",
+      "title": "Cilly Bonnelly",
+      "imitates": "Sir Billy Connolly",
+      "image": "gallery/51D1AA94-8949-473F-9C56-5FC05059F864.PNG",
+      "paragraph1": "Cilly Bonnelly reincarnates Sir Billy Connolly with improvised observational humour and Scottish comedy at its sharpest.",
+      "paragraph2": "Stand-up, film and chat-show royalty from The Last Samurai to Parkinson and Wogan; an accomplished singer who took D.I.V.O.R.C.E. to No. 1 in Rick Shaw's comedic style."
+    },
+    {
+      "id": "den-kodd",
+      "title": "Den Kodd",
+      "imitates": "",
+      "comingSoon": true,
+      "image": "gallery/large.png",
+      "paragraph1": "Inter fausta theatri signa Den Kodd adhuc expectatur: persona nova, risus novus, et echo plateae quae olim strepebat.",
+      "paragraph2": "Textus plenior mox adveniet; interea haec sedes parata est, quasi velum ante primam jocorum eruptionem."
+    }
+  ],
+  "musicalSectionHeading": "Musical \"Sirs\" & dames",
+  "musicalNote": "Each spot honours a legend with a made-up song title — examples below; further titles TBA as the tour programme settles.",
+  "musicalCharacters": [
+    {
+      "id": "jon-tones",
+      "title": "Jon Tones",
+      "imitates": "Sir Tom Jones",
+      "image": "gallery/IMG_2667.jpg"
+    },
+    {
+      "id": "box-moyst",
+      "title": "Box Moyst",
+      "imitates": "Sir Max Boyce",
+      "image": "gallery/24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG"
+    },
+    {
+      "id": "jelton-pom",
+      "title": "Jelton Pom",
+      "imitates": "Sir Elton John",
+      "image": "gallery/257C3605-36F9-421F-92F1-3A5E78C05592.PNG"
+    },
+    {
+      "id": "burley-shassey",
+      "title": "Burley Shassey",
+      "imitates": "Dame Shirley Bassey",
+      "image": "gallery/386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG"
+    },
+    {
+      "id": "rich-cliffard",
+      "title": "Rich Cliffard",
+      "imitates": "Sir Cliff Richard",
+      "image": "gallery/7B5EE70B-9A84-49D0-AAC0-9CD8196C6FD1.PNG"
+    },
+    {
+      "id": "man-vorrison",
+      "title": "Man Vorrison",
+      "imitates": "Sir Van Morrison",
+      "image": "gallery/9A28EB04-3919-40F1-BFD7-6A4EE02ADF77.PNG"
+    },
+    {
+      "id": "bobbie-silliams",
+      "title": "Bobbie Silliams",
+      "imitates": "",
+      "comingSoon": true,
+      "songTitle": "comic song title TBA",
+      "image": "gallery/C8A23A0F-8C5B-43C0-AD61-7E27E942BD6C.PNG"
+    },
+    {
+      "id": "mod-stalwart",
+      "title": "Mod Stalwart",
+      "imitates": "Sir Rod Stewart",
+      "captionExtra": "Stew Rewart",
+      "image": "gallery/EBD38503-57CF-4502-B3D7-E7425DC82D41.PNG"
+    },
+    {
+      "id": "jig-shagger",
+      "title": "Jig Shagger",
+      "imitates": "Sir Mick Jagger",
+      "image": "gallery/51D1AA94-8949-473F-9C56-5FC05059F864.PNG"
+    },
+    {
+      "id": "gaul-guitartney",
+      "title": "Gaul Guitartney",
+      "imitates": "Sir Paul McCartney",
+      "songTitle": "Blummin Flat Tyre",
+      "image": "gallery/IMG_2666.jpg"
+    }
+  ]
+}

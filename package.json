@@ -4,6 +4,8 @@
   "scripts": {
     "build": "node scripts/build-site.js",
     "sync": "./sync-docs.sh",
-    "build:site": "npm run build && npm run sync"
+    "build:site": "npm run build && npm run sync",
+    "cms": "npx decap-server",
+    "cms:site": "python3 -m http.server 8080"
   }
 }

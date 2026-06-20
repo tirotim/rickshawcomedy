@@ -38,6 +38,18 @@ function normalizeAssetPath(value) {
   return cleaned;
 }
 
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[''""]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function characterId(character) {
+  return character.id || slugify(character.title);
+}
+
 function replaceBlock(filePath, startMarker, endMarker, content) {
   var html = fs.readFileSync(filePath, "utf8");
   var start = html.indexOf(startMarker);
@@ -156,7 +168,7 @@ function renderCharacter(character) {
     '              <article class="' +
     classes +
     '" id="' +
-    escapeHtml(character.id) +
+    escapeHtml(characterId(character)) +
     '">\n' +
     renderFigure(image, character.title) +
     "\n" +
@@ -177,7 +189,7 @@ function renderCharacter(character) {
 function renderSidebarNavLink(character) {
   return (
     "                <li><a href=\"#" +
-    escapeHtml(character.id) +
+    escapeHtml(characterId(character)) +
     "\">" +
     escapeHtml(character.title) +
     "</a></li>"
@@ -195,6 +207,164 @@ function renderSidebarNav(characters, heading) {
     '              <ul class="show-sidebar-nav-list">\n' +
     characters.map(renderSidebarNavLink).join("\n") +
     "\n              </ul>"
+  );
+}
+
+function renderNkComedyCaption(character) {
+  if (character.comingSoon) {
+    return escapeHtml(character.title) + ' — <abbr title="To be announced">TBA</abbr>';
+  }
+  if (character.captionNote) {
+    return (
+      escapeHtml(character.title) +
+      " — as " +
+      escapeHtml(character.imitates) +
+      ' <span class="character-note">(' +
+      escapeHtml(character.captionNote) +
+      ")</span>"
+    );
+  }
+  if (character.imitates) {
+    return escapeHtml(character.title) + " — as " + escapeHtml(character.imitates);
+  }
+  return escapeHtml(character.title);
+}
+
+function renderNkMusicalCaption(character) {
+  if (character.comingSoon && character.songTitle) {
+    return (
+      escapeHtml(character.title) +
+      ' — <span class="character-tba">' +
+      escapeHtml(character.songTitle) +
+      "</span>"
+    );
+  }
+  var caption = escapeHtml(character.title);
+  if (character.captionExtra) {
+    caption += " (" + escapeHtml(character.captionExtra) + ")";
+  }
+  if (character.imitates) {
+    caption += " — as " + escapeHtml(character.imitates);
+  }
+  if (character.songTitle) {
+    caption += " · <em>" + escapeHtml(character.songTitle) + "</em>";
+  }
+  return caption;
+}
+
+function renderNkFeatured(character) {
+  var image = normalizeAssetPath(character.image);
+  return (
+    '              <article class="nk-character nk-character--featured" id="' +
+    escapeHtml(characterId(character)) +
+    '">\n' +
+    '                <h4 class="nk-character-title">' +
+    escapeHtml(character.title) +
+    "</h4>\n" +
+    '                <figure class="nk-character-figure">\n' +
+    '                  <img src="' +
+    escapeHtml(image) +
+    '" alt="Caricature of ' +
+    escapeHtml(character.title) +
+    '." width="800" height="1000" loading="lazy" decoding="async" />\n' +
+    '                  <figcaption class="nk-character-caption">' +
+    renderNkComedyCaption(character) +
+    "</figcaption>\n" +
+    "                </figure>\n" +
+    '                <div class="nk-character-copy">\n' +
+    "                  <p>" +
+    escapeHtml(character.paragraph1) +
+    "</p>\n" +
+    "                  <p>" +
+    escapeHtml(character.paragraph2) +
+    "</p>\n" +
+    "                </div>\n" +
+    "              </article>"
+  );
+}
+
+function renderNkMusical(character) {
+  var image = normalizeAssetPath(character.image);
+  return (
+    '              <article class="nk-character nk-character--compact" id="' +
+    escapeHtml(characterId(character)) +
+    '">\n' +
+    '                <figure class="nk-character-figure">\n' +
+    '                  <img src="' +
+    escapeHtml(image) +
+    '" alt="' +
+    escapeHtml(character.title) +
+    ' character visual." width="800" height="1000" loading="lazy" decoding="async" />\n' +
+    "                </figure>\n" +
+    '                <div class="nk-character-meta">\n' +
+    '                  <h4 class="nk-character-title">' +
+    escapeHtml(character.title) +
+    "</h4>\n" +
+    '                  <p class="nk-character-caption">' +
+    renderNkMusicalCaption(character) +
+    "</p>\n" +
+    "                </div>\n" +
+    "              </article>"
+  );
+}
+
+function buildNostalgicKnights() {
+  var data = readJson("nostalgic-knights.json");
+  var html = fs.readFileSync(path.join(SITE, "nostalgic-knights.html"), "utf8");
+
+  html = html.replace(
+    /<h1 id="nk-hero-title" class="show-page-title">[\s\S]*?<\/h1>/,
+    '<h1 id="nk-hero-title" class="show-page-title">' + escapeHtml(data.pageTitle) + "</h1>"
+  );
+  html = html.replace(
+    /<p class="show-page-lede">[\s\S]*?<\/p>/,
+    '<p class="show-page-lede">' + escapeHtml(data.lede) + "</p>"
+  );
+  fs.writeFileSync(path.join(SITE, "nostalgic-knights.html"), html, "utf8");
+
+  var block =
+    '            <p class="repertoire-lede">\n' +
+    "              " +
+    escapeHtml(data.intro) +
+    "\n" +
+    "            </p>\n" +
+    '            <div class="nk-character-sections">\n' +
+    data.comedyCharacters.map(renderNkFeatured).join("\n\n") +
+    "\n" +
+    "            </div>\n" +
+    '            <h3 class="repertoire-subhead" id="nk-musical">' +
+    escapeHtml(data.musicalSectionHeading) +
+    "</h3>\n" +
+    '            <p class="repertoire-note">\n' +
+    "              " +
+    escapeHtml(data.musicalNote) +
+    "\n" +
+    "            </p>\n" +
+    '            <div class="nk-character-grid">\n' +
+    data.musicalCharacters.map(renderNkMusical).join("\n\n") +
+    "\n" +
+    "            </div>";
+
+  replaceBlock(
+    path.join(SITE, "nostalgic-knights.html"),
+    "<!-- cms:nostalgic-knights:start -->",
+    "<!-- cms:nostalgic-knights:end -->",
+    block
+  );
+
+  var sidebar =
+    '            <nav class="show-sidebar-nav" aria-label="Character line-up">\n' +
+    '              <p class="show-sidebar-nav-intro">Click a name to jump to that character.</p>\n' +
+    renderSidebarNav(data.comedyCharacters, data.comedySectionHeading) +
+    "\n" +
+    renderSidebarNav(data.musicalCharacters, 'Musical "Sirs"') +
+    "\n            </nav>";
+
+  replaceBlock(
+    path.join(SITE, "nostalgic-knights.html"),
+    "<!-- cms:nk-sidebar:start -->",
+    "<!-- cms:nk-sidebar:end -->",
+    sidebar
   );
 }
 
@@ -312,6 +482,7 @@ function buildContact() {
   replaceBlock(path.join(SITE, "contact.html"), "<!-- cms:contact:start -->", "<!-- cms:contact:end -->", block);
 }
 
+buildNostalgicKnights();
 buildNostalgicDays();
 buildNews();
 buildContact();
