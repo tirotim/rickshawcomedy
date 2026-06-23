@@ -201,3 +201,48 @@ body.editimg-modal-open {
 html.editimg-mode body {
   padding-top: 4.5rem;
 }
+
+.editimg-auth-panel {
+  width: min(100%, 34rem);
+}
+
+.editimg-auth-copy,
+.editimg-auth-steps {
+  margin: 0 0 0.85rem;
+  color: #5a4018;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.editimg-auth-steps {
+  padding-left: 1.2rem;
+}
+
+.editimg-auth-label {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #5a4018;
+}
+
+.editimg-auth-input {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgba(200, 138, 52, 0.35);
+  border-radius: 0.45rem;
+  font: inherit;
+}
+
+.editimg-auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.editimg-auth-error {
+  margin: 0.75rem 0 0;
+  color: #ae4f51;
+  font-size: 0.88rem;
+}
