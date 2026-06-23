@@ -6,6 +6,7 @@
     "sync": "./sync-docs.sh",
     "build:site": "npm run build && npm run sync",
     "cms": "npx decap-server",
-    "cms:site": "python3 -m http.server 8080"
+    "cms:site": "python3 -m http.server 8080",
+    "editimg:api": "node scripts/editimg-api.js"
   }
 }

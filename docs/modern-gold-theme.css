@@ -772,7 +772,7 @@ body.home-page.modern-gold-site .home-banner-hero {
 }
 
 .modern-gold-site .show-sidebar--knights::after,
-.modern-gold-site .show-sidebar--showbiz::after,
+.modern-gold-site .show-sidebar--days::after,
 .modern-gold-site .show-sidebar--default::after {
   content: "";
   position: absolute;
@@ -784,7 +784,7 @@ body.home-page.modern-gold-site .home-banner-hero {
 
 
 /* Nostalgic Days — photo backdrop (33552.jpg) full column height */
-.modern-gold-site .show-sidebar--showbiz {
+.modern-gold-site .show-sidebar--days {
   padding: 0;
   border: 2px solid var(--rs-gold);
   background-color: #1a0508;
@@ -794,7 +794,7 @@ body.home-page.modern-gold-site .home-banner-hero {
     0 8px 28px rgba(0, 0, 0, 0.2);
 }
 
-.modern-gold-site .show-sidebar--showbiz::before {
+.modern-gold-site .show-sidebar--days::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -819,32 +819,30 @@ body.home-page.modern-gold-site .home-banner-hero {
   background-repeat: no-repeat;
 }
 
-.modern-gold-site .show-sidebar--showbiz .show-sidebar-sticky {
+.modern-gold-site .show-sidebar--days .show-sidebar-sticky {
   padding: clamp(0.75rem, 2vw, 1.1rem);
 }
 
-.modern-gold-site .show-sidebar--showbiz .show-sidebar-img {
+.modern-gold-site .show-sidebar--days .show-sidebar-img {
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
 }
 
 /* Show title block — main column (above page content) */
-.modern-gold-site .show-page-header {
+.modern-gold-site.show-page .show-page-header {
   margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
-  padding: clamp(0.85rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.25rem);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--mg-border);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: none !important;
+  box-shadow: none;
 }
 
 .modern-gold-site .show-page-header--knights {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(174, 79, 81, 0.2);
+  background: transparent;
 }
 
-.modern-gold-site .show-page-header--showbiz {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(200, 138, 52, 0.35);
+.modern-gold-site .show-page-header.show-page-header--showbiz {
+  background: transparent;
 }
 
 .modern-gold-site .show-page-title {
@@ -933,7 +931,7 @@ body.home-page.modern-gold-site .home-banner-hero {
   background: rgba(174, 79, 81, 0.08);
 }
 
-.modern-gold-site .show-sidebar--showbiz .show-sidebar-nav,
+.modern-gold-site .show-sidebar--days .show-sidebar-nav,
 .modern-gold-site .show-sidebar--default .show-sidebar-nav {
   background: rgba(255, 255, 255, 0.94);
   border-color: var(--mg-border);
@@ -1031,13 +1029,13 @@ body.home-page.modern-gold-site .home-banner-hero {
 
   .modern-gold-site .show-sidebar--harlequin,
   .modern-gold-site .show-sidebar--knights,
-  .modern-gold-site .show-sidebar--showbiz,
+  .modern-gold-site .show-sidebar--days,
   .modern-gold-site .show-sidebar--default {
     min-height: var(--show-sidebar-min-h);
   }
 
   .modern-gold-site .show-sidebar--default {
-    border: 1px solid var(--mg-border);
+    border: none;
   }
 
   .modern-gold-site .show-sidebar-img {
@@ -1070,8 +1068,10 @@ body.home-page.modern-gold-site .home-banner-hero {
 }
 
 @media (max-width: 899px) {
-  .modern-gold-site .show-page-layout {
-    grid-template-columns: 1fr;
+  .modern-gold-site.show-page .show-page-layout {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
   }
 
   .modern-gold-site .show-page-content,
@@ -1080,7 +1080,11 @@ body.home-page.modern-gold-site .home-banner-hero {
     grid-row: auto;
   }
 
-  /* Mobile — title in main column; sidebar shows character nav only */
+  .modern-gold-site.show-page .show-page-content {
+    order: 1;
+  }
+
+  /* Mobile — main content first; character nav sidebar below */
   .modern-gold-site.show-page .show-sidebar {
     display: none;
   }
@@ -1088,7 +1092,7 @@ body.home-page.modern-gold-site .home-banner-hero {
   .modern-gold-site.show-page--knights .show-sidebar,
   .modern-gold-site.show-page--days .show-sidebar {
     display: block;
-    order: 0;
+    order: 2;
     width: 100%;
     max-width: none;
     margin: 0;
@@ -1114,11 +1118,6 @@ body.home-page.modern-gold-site .home-banner-hero {
   .modern-gold-site.show-page--days .show-sidebar-nav {
     max-height: none;
     margin-top: 0;
-  }
-
-  .modern-gold-site.show-page--knights .show-page-content,
-  .modern-gold-site.show-page--days .show-page-content {
-    order: 1;
   }
 
   .modern-gold-site .show-page-title {
@@ -2068,24 +2067,23 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
   padding-top: 1rem;
 }
 
-.modern-gold-site .repertoire-block,
-.modern-gold-site .bio-masthead + .bio-body,
-.modern-gold-site .gallery-grid {
-  /* content inherits card from wrap */
+.modern-gold-site.show-page .repertoire-block,
+.modern-gold-site.show-page .repertoire-block--hero,
+.modern-gold-site .repertoire-block {
+  border: none !important;
+}
+
+.modern-gold-site.show-page .repertoire-block,
+.modern-gold-site.show-page .repertoire-block--hero {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .modern-gold-site .repertoire-block--hero {
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-
-.modern-gold-site.show-page .repertoire-block--hero {
-  padding: clamp(0.85rem, 2vw, 1.25rem) clamp(1rem, 2.5vw, 1.5rem) clamp(1rem, 2.5vw, 1.5rem);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(174, 79, 81, 0.2);
-  box-shadow: 0 4px 22px rgba(174, 79, 81, 0.12);
+  border: none !important;
+  box-shadow: none;
 }
 
 /* Nostalgic Knights — character sections */
@@ -2114,7 +2112,7 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
 .modern-gold-site .nk-character--featured {
   padding: clamp(0.55rem, 1.5vw, 0.85rem) clamp(0.65rem, 1.8vw, 1rem);
   padding-bottom: clamp(0.85rem, 2vw, 1.15rem);
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: none;
 }
 
 .modern-gold-site .nk-character--featured:last-child {
@@ -2398,6 +2396,27 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
   border-radius: 8px;
 }
 
+.modern-gold-site .btn-primary {
+  color: #fff;
+  background: #ae4f51;
+  border: 1px solid rgba(174, 79, 81, 0.35);
+  box-shadow: 0 4px 16px rgba(174, 79, 81, 0.22);
+}
+
+.modern-gold-site .btn-primary:hover {
+  color: #fff;
+  background: #964c4e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(174, 79, 81, 0.28);
+}
+
+.modern-gold-site .btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 /* --- Jump to top --- */
 .modern-gold-site .jump-to-top-bar {
   margin: 0;
@@ -2540,7 +2559,127 @@ body.home-page.modern-gold-site .home-page-layout.wrap {
 .modern-gold-site .section-intro,
 .modern-gold-site .repertoire-callout,
 .modern-gold-site .character-list,
-.modern-gold-site .news-copy p,
+.modern-gold-site .news-copy p {
+  max-width: 36rem;
+  text-align: left;
+}
+
+/* --- Contact page --- */
+.modern-gold-site .section-contact {
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.modern-gold-site .contact-card {
+  max-width: min(36rem, 100%);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.modern-gold-site .contact-card .section-heading {
+  margin-bottom: 0.75rem;
+}
+
+.modern-gold-site .contact-intro,
+.modern-gold-site .contact-email-line {
+  text-align: center;
+}
+
+.modern-gold-site .contact-form-wrap {
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  text-align: left;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(200, 138, 52, 0.28);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px rgba(42, 28, 12, 0.06);
+}
+
+.modern-gold-site .contact-form-heading {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-traditional);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  color: #ae4f51;
+}
+
+.modern-gold-site .contact-form-intro {
+  margin: 0 0 1.25rem;
+  color: var(--mg-prose-color);
+}
+
+.modern-gold-site .contact-form {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.modern-gold-site .contact-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.modern-gold-site .contact-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #5a4018;
+}
+
+.modern-gold-site .contact-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(200, 138, 52, 0.35);
+  border-radius: var(--radius);
+  background: #fff;
+  font: inherit;
+  color: var(--text);
+}
+
+.modern-gold-site .contact-input:focus-visible {
+  outline: 2px solid rgba(174, 79, 81, 0.45);
+  outline-offset: 2px;
+  border-color: rgba(174, 79, 81, 0.45);
+}
+
+.modern-gold-site .contact-textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.modern-gold-site .contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.modern-gold-site .contact-turnstile {
+  min-height: 4rem;
+}
+
+.modern-gold-site .contact-submit {
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+.modern-gold-site .contact-form-status {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.modern-gold-site .contact-form-status.is-success {
+  color: #2f6b3b;
+}
+
+.modern-gold-site .contact-form-status.is-error {
+  color: #ae4f51;
+}
+
 .modern-gold-site .contact-card p {
   font-size: var(--mg-prose-size);
   font-weight: var(--mg-prose-weight);

@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Contact — bookings and enquiries, Rick Shaw Comedy." />
-    <title>Contacts | Rick Shaw Comedy</title>
+    <title>Contact | Rick Shaw Comedy</title>
+    <link rel="icon" href="./rslogo.png?v=2" type="image/png" />
+    <link rel="apple-touch-icon" href="./rslogo.png?v=2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +14,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css?v=7" />
-    <link rel="stylesheet" href="./modern-gold-theme.css?v=173" />
+    <link rel="stylesheet" href="./modern-gold-theme.css?v=174" />
+    <link rel="stylesheet" href="./editimg.css?v=1" />
+    <link rel="stylesheet" href="./cmp.css?v=1" />
   </head>
   <body id="top" class="modern-gold-site">
     <div class="mg-backdrop" aria-hidden="true">
@@ -56,7 +60,7 @@
             </li>
             <li><a href="./gallery.html">Gallery</a></li>
             <li><a href="./news.html">News</a></li>
-            <li><a href="./contact.html">Contacts</a></li>
+            <li><a href="./contact.html">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -66,9 +70,9 @@
       <section id="contact" class="section section-contact page-first-section">
         <div class="wrap contact-card">
           <!-- cms:contact:start -->
-          <h1 class="section-heading">Contacts</h1>
-          <p>Booking and enquiries — replace with your preferred email and phone when you go live.</p>
-          <p><a class="contact-link" href="mailto:bookings@rickshawcomedy.example">bookings@rickshawcomedy.example</a></p>
+          <h1 class="section-heading">Contact</h1>
+          <p class="contact-intro">Booking and enquiries — use the form below.</p>
+          <div class="contact-form-wrap"><h2 class="contact-form-heading">Send a message</h2><p class="contact-form-intro">Tell us about your event, venue or enquiry. We'll get back to you as soon as we can.</p><form id="contact-form" class="contact-form" action="#" method="post" novalidate><div class="contact-honeypot" aria-hidden="true"><label for="contact-botcheck">Leave blank</label><input type="text" id="contact-botcheck" name="botcheck" tabindex="-1" autocomplete="off" /></div><div class="contact-field"><label class="contact-label" for="contact-name">Your name</label><input class="contact-input" id="contact-name" name="name" type="text" required aria-required="true" placeholder="Full name" /></div><div class="contact-field"><label class="contact-label" for="contact-email">Email</label><input class="contact-input" id="contact-email" name="email" type="email" required aria-required="true" placeholder="you@example.com" /></div><div class="contact-field"><label class="contact-label" for="contact-phone">Phone (optional)</label><input class="contact-input" id="contact-phone" name="phone" type="tel" /></div><div class="contact-field"><label class="contact-label" for="contact-message">Message</label><textarea class="contact-input contact-textarea" id="contact-message" name="message" rows="5" required aria-required="true" placeholder="Tell us about your booking or enquiry"></textarea></div><div id="contact-turnstile" class="contact-turnstile"></div><button type="submit" class="btn btn-primary contact-submit">Send message</button><p class="contact-form-status" role="status" aria-live="polite" hidden></p></form></div><script type="application/json" id="contact-form-config">{"web3formsAccessKey":"","turnstileSiteKey":"1x00000000000000000000AA","successMessage":"Thank you — your message has been sent. We'll reply as soon as we can.","errorMessage":"Sorry, something went wrong. Please try again.","subject":"Rick Shaw Comedy — website enquiry"}</script>
           <!-- cms:contact:end -->
         </div>
       </section>
@@ -81,15 +85,16 @@
     <footer class="site-footer">
       <div class="wrap footer-inner">
         <p class="footer-tagline">
-          <strong>Rick Shaw Comedy</strong> — Welsh impressionist, mimic and comedian. Live variety built around <strong>Nostalgic Knights</strong>, with booking and enquiries through Contacts.
+          <strong>Rick Shaw Comedy</strong> — Welsh impressionist, mimic and comedian. Live variety built around <strong>Nostalgic Knights</strong>, with booking and enquiries through Contact.
         </p>
         <p class="footer-disclaimer">
           <strong>Note:</strong> Some material references older comedy styles and may not suit every taste. Performances are aimed at adult audiences.
         </p>
         <nav class="footer-legal" aria-label="Legal and policies">
           <a href="./index.html">Home</a>
-          <a href="./contact.html">Contacts</a>
+          <a href="./contact.html">Contact</a>
           <a href="./privacy.html">Privacy notice</a>
+          <a href="#" data-cmp-open>Cookie settings</a>
           <a href="./privacy.html#copyright">Terms of use</a>
           <a href="./privacy.html#disclaimer">Disclaimer</a>
         </nav>
@@ -97,10 +102,12 @@
           <a class="footer-cms-btn" href="./admin/">Edit site</a>
         </p>
         <p class="copyright">&copy; 2026 Rick Shaw Comedy. All rights reserved.</p>
-        <p class="footer-note">Partnerships, charities and press — <a href="./contact.html">get in touch</a>.</p>
       </div>
     </footer>
 
+    <script src="./cmp.js" defer></script>
+    <script src="./contact-form.js" defer></script>
+    <script src="./editimg.js" defer></script>
     <script src="./site.js" defer></script>
   </body>
 </html>

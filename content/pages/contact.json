@@ -1,5 +1,46 @@
 {
-  "heading": "Contacts",
-  "body": "Booking and enquiries — replace with your preferred email and phone when you go live.",
-  "email": "bookings@rickshawcomedy.example"
+  "heading": "Contact",
+  "body": "Booking and enquiries — use the form below.",
+  "email": "bookings@rickshawcomedy.example",
+  "showEmail": false,
+  "form": {
+    "enabled": true,
+    "heading": "Send a message",
+    "intro": "Tell us about your event, venue or enquiry. We'll get back to you as soon as we can.",
+    "submitLabel": "Send message",
+    "successMessage": "Thank you — your message has been sent. We'll reply as soon as we can.",
+    "errorMessage": "Sorry, something went wrong. Please try again.",
+    "web3formsAccessKey": "",
+    "turnstileSiteKey": "1x00000000000000000000AA",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Your name",
+        "type": "text",
+        "required": true,
+        "placeholder": "Full name"
+      },
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "required": true,
+        "placeholder": "you@example.com"
+      },
+      {
+        "name": "phone",
+        "label": "Phone (optional)",
+        "type": "tel",
+        "required": false,
+        "placeholder": ""
+      },
+      {
+        "name": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Tell us about your booking or enquiry"
+      }
+    ]
+  }
 }

@@ -78,15 +78,6 @@ collections:
           - { label: "Page title", name: pageTitle, widget: string }
           - { label: "Short line under the title", name: lede, widget: string }
           - { label: "First introduction paragraph", name: intro, widget: text }
-          - { label: "Line before the spoof example", name: spoofNote, widget: text }
-          - label: "Spoof example (shown in the quote box)"
-            name: spoofExample
-            widget: object
-            collapsed: true
-            fields:
-              - { label: "Character name", name: character, widget: string }
-              - { label: "As (celebrity)", name: as, widget: string }
-              - { label: "Song title", name: song, widget: string }
           - { label: "Walkman / 60s–80s intro paragraph", name: musicIntro, widget: text }
           - { label: "First grid heading", name: sectionHeading, widget: string, default: "Remember those days — personalities" }
           - label: "Personality caricatures (first grid)"
@@ -140,8 +131,8 @@ collections:
           - { label: "Button link (web address)", name: buttonUrl, widget: string, hint: "Must start with https://" }
 
   - name: contact
-    label: "Contacts"
-    label_singular: "Contacts"
+    label: "Contact"
+    label_singular: "Contact"
     files:
       - name: page
         label: "Edit this page"
@@ -150,6 +141,36 @@ collections:
         editor:
           preview: true
         fields:
-          - { label: "Page heading", name: heading, widget: string }
-          - { label: "Main text", name: body, widget: text }
-          - { label: "Email address on the page", name: email, widget: string }
+          - { label: "Page heading", name: heading, widget: string, default: "Contact" }
+          - { label: "Introduction", name: body, widget: text }
+          - { label: "Show email address on page", name: showEmail, widget: boolean, default: true }
+          - { label: "Email address", name: email, widget: string }
+          - label: "Contact form"
+            name: form
+            widget: object
+            collapsed: false
+            fields:
+              - { label: "Show the form", name: enabled, widget: boolean, default: true }
+              - { label: "Form heading", name: heading, widget: string, default: "Send a message" }
+              - { label: "Text above the form", name: intro, widget: text }
+              - { label: "Submit button text", name: submitLabel, widget: string, default: "Send message" }
+              - { label: "Success message", name: successMessage, widget: string }
+              - { label: "Error message", name: errorMessage, widget: string }
+              - label: "Web3Forms access key"
+                name: web3formsAccessKey
+                widget: string
+                hint: "Free at web3forms.com — messages go to your email. Leave blank until you have a key."
+              - label: "Cloudflare Turnstile site key (captcha)"
+                name: turnstileSiteKey
+                widget: string
+                hint: "Get keys at dash.cloudflare.com → Turnstile. Use 1x00000000000000000000AA for testing."
+              - label: "Form fields"
+                name: fields
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Field name (internal)", name: name, widget: string, hint: "e.g. name, email, message" }
+                  - { label: "Label shown to visitors", name: label, widget: string }
+                  - { label: "Field type", name: type, widget: select, options: ["text", "email", "tel", "textarea"], default: "text" }
+                  - { label: "Required", name: required, widget: boolean, default: true }
+                  - { label: "Placeholder (optional)", name: placeholder, widget: string, required: false }

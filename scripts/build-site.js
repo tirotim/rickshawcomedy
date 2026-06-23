@@ -93,14 +93,24 @@ function renderTitle(title, link) {
   return '                  <h3 class="nd-caricature-title">' + escapeHtml(title) + "</h3>";
 }
 
-function renderFigure(image, title) {
+function editimgBindAttr(bind) {
+  if (!bind) {
+    return "";
+  }
+  return ' data-editimg-bind="' + escapeHtml(bind) + '"';
+}
+
+function renderFigure(image, title, bind) {
   var alt = escapeHtml(title + " caricature");
+  var bindAttr = editimgBindAttr(bind);
   if (image) {
     return (
       "                <figure class=\"nd-caricature-figure\">\n" +
       '                  <img src="' +
       escapeHtml(image) +
-      '" alt="' +
+      '"' +
+      bindAttr +
+      ' alt="' +
       alt +
       '" width="400" height="500" loading="lazy" decoding="async" />\n' +
       "                </figure>"
@@ -153,7 +163,7 @@ function renderAudioPlayer(character) {
   );
 }
 
-function renderCharacter(character) {
+function renderCharacter(character, bind) {
   var image = normalizeAssetPath(character.image);
   var link = normalizeAssetPath(character.link);
   var classes = "nd-caricature";
@@ -170,7 +180,7 @@ function renderCharacter(character) {
     '" id="' +
     escapeHtml(characterId(character)) +
     '">\n' +
-    renderFigure(image, character.title) +
+    renderFigure(image, character.title, bind) +
     "\n" +
     '                <div class="nd-caricature-meta">\n' +
     renderTitle(character.title, link) +
@@ -252,8 +262,9 @@ function renderNkMusicalCaption(character) {
   return caption;
 }
 
-function renderNkFeatured(character) {
+function renderNkFeatured(character, bind) {
   var image = normalizeAssetPath(character.image);
+  var bindAttr = editimgBindAttr(bind);
   return (
     '              <article class="nk-character nk-character--featured" id="' +
     escapeHtml(characterId(character)) +
@@ -264,7 +275,9 @@ function renderNkFeatured(character) {
     '                <figure class="nk-character-figure">\n' +
     '                  <img src="' +
     escapeHtml(image) +
-    '" alt="Caricature of ' +
+    '"' +
+    bindAttr +
+    ' alt="Caricature of ' +
     escapeHtml(character.title) +
     '." width="800" height="1000" loading="lazy" decoding="async" />\n' +
     '                  <figcaption class="nk-character-caption">' +
@@ -283,8 +296,9 @@ function renderNkFeatured(character) {
   );
 }
 
-function renderNkMusical(character) {
+function renderNkMusical(character, bind) {
   var image = normalizeAssetPath(character.image);
+  var bindAttr = editimgBindAttr(bind);
   return (
     '              <article class="nk-character nk-character--compact" id="' +
     escapeHtml(characterId(character)) +
@@ -292,7 +306,9 @@ function renderNkMusical(character) {
     '                <figure class="nk-character-figure">\n' +
     '                  <img src="' +
     escapeHtml(image) +
-    '" alt="' +
+    '"' +
+    bindAttr +
+    ' alt="' +
     escapeHtml(character.title) +
     ' character visual." width="800" height="1000" loading="lazy" decoding="async" />\n' +
     "                </figure>\n" +
@@ -329,7 +345,11 @@ function buildNostalgicKnights() {
     "\n" +
     "            </p>\n" +
     '            <div class="nk-character-sections">\n' +
-    data.comedyCharacters.map(renderNkFeatured).join("\n\n") +
+    data.comedyCharacters
+      .map(function (character, index) {
+        return renderNkFeatured(character, "nostalgic-knights.json:comedyCharacters." + index + ".image");
+      })
+      .join("\n\n") +
     "\n" +
     "            </div>\n" +
     '            <h3 class="repertoire-subhead" id="nk-musical">' +
@@ -341,7 +361,11 @@ function buildNostalgicKnights() {
     "\n" +
     "            </p>\n" +
     '            <div class="nk-character-grid">\n' +
-    data.musicalCharacters.map(renderNkMusical).join("\n\n") +
+    data.musicalCharacters
+      .map(function (character, index) {
+        return renderNkMusical(character, "nostalgic-knights.json:musicalCharacters." + index + ".image");
+      })
+      .join("\n\n") +
     "\n" +
     "            </div>";
 
@@ -388,25 +412,15 @@ function buildNostalgicDays() {
     escapeHtml(data.intro) +
     "\n" +
     "            </p>\n" +
-    '            <p class="repertoire-lede">\n' +
-    "              " +
-    escapeHtml(data.spoofNote) +
-    "\n" +
-    "            </p>\n" +
-    '            <blockquote class="repertoire-callout repertoire-callout--secondary">\n' +
-    "              <strong>" +
-    escapeHtml(data.spoofExample.character) +
-    "</strong> as " +
-    escapeHtml(data.spoofExample.as) +
-    " — <em>" +
-    escapeHtml(data.spoofExample.song) +
-    "</em>\n" +
-    "            </blockquote>\n" +
     '            <h2 class="repertoire-subhead">' +
     escapeHtml(data.sectionHeading) +
     "</h2>\n" +
     '            <div class="nd-caricature-grid" aria-label="Rick Shaw caricatures">\n' +
-    data.characters.map(renderCharacter).join("\n\n") +
+    data.characters
+      .map(function (character, index) {
+        return renderCharacter(character, "nostalgic-days.json:characters." + index + ".image");
+      })
+      .join("\n\n") +
     "\n" +
     "            </div>\n" +
     '            <p class="repertoire-lede nd-music-intro">\n' +
@@ -418,7 +432,11 @@ function buildNostalgicDays() {
     escapeHtml(data.musicSectionHeading) +
     "</h2>\n" +
     '            <div class="nd-caricature-grid" aria-label="Musical mimic songs">\n' +
-    data.musicCharacters.map(renderCharacter).join("\n\n") +
+    data.musicCharacters
+      .map(function (character, index) {
+        return renderCharacter(character, "nostalgic-days.json:musicCharacters." + index + ".image");
+      })
+      .join("\n\n") +
     "\n" +
     "            </div>";
 
@@ -462,28 +480,234 @@ function buildNews() {
     escapeHtml(data.buttonLabel) +
     "</a>";
 
-  replaceBlock(path.join(SITE, "news.html"), "<!-- cms:news:start -->", "<!-- cms:news:end -->", block);
+  replaceBlock(path.join(SITE, "news.html"), "<!-- cms:news:start -->", "<!-- cms:news:end -->", block  );
+}
+
+var IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"]);
+var EDITIMG_PAGES = [
+  "index",
+  "nostalgic-knights",
+  "nostalgic-days",
+  "news",
+  "contact",
+  "gallery",
+  "evan-vance",
+  "alter-egos",
+  "privacy",
+];
+
+function readImageOverrides() {
+  var filePath = path.join(CONTENT, "image-overrides.json");
+  if (!fs.existsSync(filePath)) {
+    return {};
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function applyImageOverridesToHtml(html, pageFile, overrides) {
+  var pageOverrides = overrides[pageFile];
+  if (!pageOverrides) {
+    return html;
+  }
+  Object.keys(pageOverrides).forEach(function (oldSrc) {
+    var newSrc = pageOverrides[oldSrc];
+    if (!oldSrc || !newSrc || oldSrc === newSrc) {
+      return;
+    }
+    html = html.split('src="' + oldSrc + '"').join('src="' + newSrc + '"');
+    html = html.split("src='" + oldSrc + "'").join("src='" + newSrc + "'");
+  });
+  return html;
+}
+
+function applyImageOverridesAll() {
+  var overrides = readImageOverrides();
+  fs.readdirSync(SITE).forEach(function (name) {
+    if (!name.endsWith(".html")) {
+      return;
+    }
+    var filePath = path.join(SITE, name);
+    var html = fs.readFileSync(filePath, "utf8");
+    var next = applyImageOverridesToHtml(html, name, overrides);
+    if (next !== html) {
+      fs.writeFileSync(filePath, next, "utf8");
+    }
+  });
+}
+
+function toPublicMediaPath(absPath) {
+  var rel = path.relative(SITE, absPath).split(path.sep).join("/");
+  return "./" + rel;
+}
+
+function scanMediaDir(dir, base, out) {
+  if (!fs.existsSync(dir)) {
+    return;
+  }
+  fs.readdirSync(dir).forEach(function (name) {
+    var full = path.join(dir, name);
+    var stat = fs.statSync(full);
+    if (stat.isDirectory()) {
+      scanMediaDir(full, base, out);
+      return;
+    }
+    var ext = path.extname(name).toLowerCase();
+    if (!IMAGE_EXT.has(ext)) {
+      return;
+    }
+    out.push({
+      path: toPublicMediaPath(full),
+      name: name,
+      folder: path.relative(base, dir).split(path.sep).join("/") || "site root",
+    });
+  });
+}
+
+function buildMediaLibrary() {
+  var items = [];
+  scanMediaDir(path.join(SITE, "gallery"), SITE, items);
+  fs.readdirSync(SITE).forEach(function (name) {
+    var full = path.join(SITE, name);
+    if (!fs.existsSync(full) || !fs.statSync(full).isFile()) {
+      return;
+    }
+    var ext = path.extname(name).toLowerCase();
+    if (!IMAGE_EXT.has(ext)) {
+      return;
+    }
+    items.push({
+      path: toPublicMediaPath(full),
+      name: name,
+      folder: "site root",
+    });
+  });
+  items = items.filter(function (item, index, arr) {
+    return arr.findIndex(function (other) {
+      return other.path === item.path;
+    }) === index;
+  });
+  items.sort(function (a, b) {
+    return a.path.localeCompare(b.path);
+  });
+  fs.writeFileSync(path.join(SITE, "media-library.json"), JSON.stringify({ items: items }, null, 2) + "\n", "utf8");
+}
+
+function generateEditimgRoutes() {
+  EDITIMG_PAGES.forEach(function (page) {
+    var dir = path.join(SITE, page, "editimg");
+    fs.mkdirSync(dir, { recursive: true });
+    var target = "../../" + (page === "index" ? "index.html" : page + ".html") + "?editimg";
+    var html =
+      "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\" />\n" +
+      "<title>Image edit mode</title>\n<script>location.replace(" +
+      JSON.stringify(target) +
+      ");</script>\n</head>\n<body></body>\n</html>\n";
+    fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
+  });
 }
 
 function buildContact() {
   var data = readJson("contact.json");
+  var form = data.form || {};
+  var fields = Array.isArray(form.fields) ? form.fields : [];
+
   var block =
     '          <h1 class="section-heading">' +
     escapeHtml(data.heading) +
     "</h1>\n" +
-    "          <p>" +
+    "          <p class=\"contact-intro\">" +
     escapeHtml(data.body) +
-    '</p>\n          <p><a class="contact-link" href="mailto:' +
-    escapeHtml(data.email) +
-    '">' +
-    escapeHtml(data.email) +
-    "</a></p>";
+    "</p>";
+
+  if (data.showEmail !== false && data.email) {
+    block +=
+      '\n          <p class="contact-email-line"><a class="contact-link" href="mailto:' +
+      escapeHtml(data.email) +
+      '">' +
+      escapeHtml(data.email) +
+      "</a></p>";
+  }
+
+  if (form.enabled !== false && fields.length) {
+    block +=
+      '\n          <div class="contact-form-wrap">' +
+      (form.heading
+        ? '<h2 class="contact-form-heading">' + escapeHtml(form.heading) + "</h2>"
+        : "") +
+      (form.intro ? '<p class="contact-form-intro">' + escapeHtml(form.intro) + "</p>" : "") +
+      '<form id="contact-form" class="contact-form" action="#" method="post" novalidate>' +
+      '<div class="contact-honeypot" aria-hidden="true">' +
+      '<label for="contact-botcheck">Leave blank</label>' +
+      '<input type="text" id="contact-botcheck" name="botcheck" tabindex="-1" autocomplete="off" />' +
+      "</div>";
+
+    fields.forEach(function (field) {
+      block += renderContactField(field);
+    });
+
+    block +=
+      '<div id="contact-turnstile" class="contact-turnstile"></div>' +
+      '<button type="submit" class="btn btn-primary contact-submit">' +
+      escapeHtml(form.submitLabel || "Send message") +
+      "</button>" +
+      '<p class="contact-form-status" role="status" aria-live="polite" hidden></p>' +
+      "</form></div>" +
+      '<script type="application/json" id="contact-form-config">' +
+      JSON.stringify({
+        web3formsAccessKey: form.web3formsAccessKey || "",
+        turnstileSiteKey: form.turnstileSiteKey || "",
+        successMessage: form.successMessage || "Thank you — your message has been sent.",
+        errorMessage: form.errorMessage || "Sorry, something went wrong. Please try again.",
+        subject: "Rick Shaw Comedy — website enquiry",
+      }) +
+      "</script>";
+  }
 
   replaceBlock(path.join(SITE, "contact.html"), "<!-- cms:contact:start -->", "<!-- cms:contact:end -->", block);
+}
+
+function renderContactField(field) {
+  var id = "contact-" + field.name;
+  var required = field.required ? ' required aria-required="true"' : "";
+  var placeholder = field.placeholder ? ' placeholder="' + escapeHtml(field.placeholder) + '"' : "";
+  var label = '<label class="contact-label" for="' + id + '">' + escapeHtml(field.label) + "</label>";
+
+  if (field.type === "textarea") {
+    return (
+      '<div class="contact-field">' +
+      label +
+      '<textarea class="contact-input contact-textarea" id="' +
+      id +
+      '" name="' +
+      escapeHtml(field.name) +
+      '" rows="5"' +
+      required +
+      placeholder +
+      "></textarea></div>"
+    );
+  }
+
+  return (
+    '<div class="contact-field">' +
+    label +
+    '<input class="contact-input" id="' +
+    id +
+    '" name="' +
+    escapeHtml(field.name) +
+    '" type="' +
+    escapeHtml(field.type || "text") +
+    '"' +
+    required +
+    placeholder +
+    " /></div>"
+  );
 }
 
 buildNostalgicKnights();
 buildNostalgicDays();
 buildNews();
 buildContact();
+buildMediaLibrary();
+generateEditimgRoutes();
+applyImageOverridesAll();
 console.log("Built site content into versions/modern-gold/");

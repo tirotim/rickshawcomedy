@@ -1,0 +1,203 @@
+figure .editimg-wrap,
+.show-sidebar-figure .editimg-wrap,
+.nd-caricature-figure .editimg-wrap,
+.nk-character-figure .editimg-wrap {
+  display: block;
+  width: 100%;
+}
+
+html.editimg-mode {
+  scroll-padding-top: 4.5rem;
+}
+
+.editimg-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 13000;
+  padding: 0.65rem 1rem;
+  background: rgba(26, 5, 8, 0.94);
+  color: #f6e5b1;
+  border-bottom: 2px solid rgba(200, 138, 52, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.editimg-toolbar-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.editimg-toolbar-title {
+  margin: 0;
+  flex: 1 1 14rem;
+  font-size: 0.92rem;
+}
+
+.editimg-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.editimg-toolbar-note {
+  margin: 0;
+  flex: 1 1 100%;
+  font-size: 0.8rem;
+  color: rgba(246, 229, 177, 0.82);
+}
+
+.editimg-toolbar-note.is-error {
+  color: #f5b0b2;
+}
+
+.editimg-toolbar-note code {
+  font-size: 0.78rem;
+}
+
+.editimg-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.editimg-wrap.is-changed {
+  outline: 3px solid rgba(200, 138, 52, 0.75);
+  outline-offset: 3px;
+}
+
+.editimg-wrap .editimg-replace-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 3;
+  padding: 0.35rem 0.7rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(174, 79, 81, 0.95);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.editimg-wrap .editimg-replace-btn:hover,
+.editimg-wrap .editimg-replace-btn:focus-visible {
+  background: #964c4e;
+}
+
+.editimg-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 14000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.editimg-modal[hidden] {
+  display: none !important;
+}
+
+.editimg-modal-panel {
+  position: relative;
+  width: min(100%, 56rem);
+  max-height: min(88vh, 44rem);
+  overflow: auto;
+  padding: 1rem 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  border: 1px solid rgba(200, 138, 52, 0.28);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.editimg-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(174, 79, 81, 0.12);
+  color: #ae4f51;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.editimg-modal-title {
+  margin: 0 2rem 0.75rem 0;
+  font-size: 1.2rem;
+  color: #ae4f51;
+}
+
+.editimg-modal-toolbar {
+  margin-bottom: 0.85rem;
+}
+
+.editimg-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.editimg-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.editimg-media-item {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(200, 138, 52, 0.22);
+  border-radius: 0.5rem;
+  background: rgba(246, 229, 177, 0.18);
+  cursor: pointer;
+  text-align: left;
+}
+
+.editimg-media-item:hover,
+.editimg-media-item:focus-visible {
+  border-color: rgba(174, 79, 81, 0.45);
+  background: rgba(246, 229, 177, 0.35);
+}
+
+.editimg-media-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  background: #fff;
+}
+
+.editimg-media-name {
+  font-size: 0.68rem;
+  line-height: 1.25;
+  color: #5a4018;
+  word-break: break-word;
+}
+
+.editimg-empty {
+  margin: 0;
+  color: #5a4018;
+}
+
+body.editimg-modal-open {
+  overflow: hidden;
+}
+
+html.editimg-mode body {
+  padding-top: 4.5rem;
+}
