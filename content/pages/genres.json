@@ -1,0 +1,40 @@
+{
+  "pageTitle": "Genres",
+  "lede": "Sit-down comedy by theme — Rick Shaw live, Evan Vance live, and a catalogue of genre sets.",
+  "featuredLive": [
+    {
+      "id": "rick-shaw-live",
+      "title": "Rick Shaw 'Live'",
+      "image": "./shawknight3.png",
+      "audio": "audio/rick-shaw-live.mp3"
+    },
+    {
+      "id": "evan-vance-live",
+      "title": "Evan Vance 'Live'",
+      "image": "./gallery/IMG_2666.jpg",
+      "audio": "audio/evan-vance.mp3"
+    }
+  ],
+  "genresLeft": [
+    { "id": "marriage", "title": "Marriage", "audio": "audio/genres/marriage.mp3" },
+    { "id": "christmas-santa", "title": "Christmas & Santa", "audio": "audio/genres/christmas-santa.mp3" },
+    { "id": "a-to-z-comedy", "title": "A to Z Comedy", "audio": "audio/genres/a-to-z-comedy.mp3" },
+    { "id": "i-got-to-thinking", "title": "I got to thinking", "audio": "audio/i-got-to-thinking.mp3" },
+    { "id": "transport", "title": "Transport", "audio": "audio/genres/transport.mp3" },
+    { "id": "unusual-phrases", "title": "Unusual Phrases", "audio": "audio/genres/unusual-phrases.mp3" },
+    { "id": "signs", "title": "Signs", "audio": "audio/genres/signs.mp3" }
+  ],
+  "genresRight": [
+    { "id": "sport", "title": "Sport", "audio": "audio/genres/sport.mp3" },
+    { "id": "its-just-shit", "title": "Its Just Shit", "audio": "audio/genres/its-just-shit.mp3" },
+    { "id": "learning-english", "title": "Learning the English Language", "audio": "audio/genres/learning-english.mp3" },
+    { "id": "animals", "title": "Animals", "audio": "audio/genres/animals.mp3" },
+    { "id": "family", "title": "Family", "audio": "audio/genres/family.mp3" },
+    { "id": "menu", "title": "Menu", "audio": "audio/genres/menu.mp3" },
+    {
+      "id": "work-in-progress",
+      "title": "Work in Progress New Comedy Ideas",
+      "audio": "audio/genres/work-in-progress.mp3"
+    }
+  ]
+}

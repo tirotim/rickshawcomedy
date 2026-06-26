@@ -93,6 +93,49 @@ html.editimg-mode {
   background: #964c4e;
 }
 
+.editimg-wrap-audio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.editimg-wrap-audio .editimg-replace-btn--audio {
+  position: static;
+  margin-left: 0.15rem;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+.editimg-media-item--audio {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.editimg-audio-icon {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.35rem;
+  background:
+    linear-gradient(145deg, rgba(246, 229, 177, 0.55), rgba(255, 255, 255, 0.95)),
+    rgba(174, 79, 81, 0.08);
+  position: relative;
+}
+
+.editimg-audio-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-top: 0.55rem solid transparent;
+  border-bottom: 0.55rem solid transparent;
+  border-left: 0.85rem solid #ae4f51;
+}
+
 .editimg-modal {
   position: fixed;
   inset: 0;

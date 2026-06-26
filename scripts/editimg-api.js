@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Local API for image edit mode (save overrides, list/upload media).
+ * Local API for media edit mode (save overrides, list/upload images and audio).
  * Run: node scripts/editimg-api.js  (default http://localhost:8082)
  */
 const fs = require("fs");
@@ -14,6 +14,7 @@ const OVERRIDES_FILE = path.join(CONTENT, "image-overrides.json");
 const PORT = Number(process.env.EDITIMG_PORT || 8082);
 
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"]);
+const AUDIO_EXT = new Set([".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"]);
 
 function send(res, status, body, type) {
   res.writeHead(status, {
@@ -70,7 +71,7 @@ function toPublicPath(absPath) {
   return "./" + rel;
 }
 
-function scanDir(dir, base, out) {
+function scanDir(dir, base, out, extSet, type) {
   if (!fs.existsSync(dir)) {
     return;
   }
@@ -78,24 +79,26 @@ function scanDir(dir, base, out) {
     var full = path.join(dir, name);
     var stat = fs.statSync(full);
     if (stat.isDirectory()) {
-      scanDir(full, base, out);
+      scanDir(full, base, out, extSet, type);
       return;
     }
     var ext = path.extname(name).toLowerCase();
-    if (!IMAGE_EXT.has(ext)) {
+    if (!extSet.has(ext)) {
       return;
     }
     out.push({
       path: toPublicPath(full),
       name: name,
       folder: path.relative(base, dir).split(path.sep).join("/") || "site root",
+      type: type,
     });
   });
 }
 
 function buildMediaList() {
   var items = [];
-  scanDir(path.join(SITE, "gallery"), SITE, items);
+  scanDir(path.join(SITE, "gallery"), SITE, items, IMAGE_EXT, "image");
+  scanDir(path.join(SITE, "audio"), SITE, items, AUDIO_EXT, "audio");
   fs.readdirSync(SITE).forEach(function (name) {
     var full = path.join(SITE, name);
     if (!fs.existsSync(full) || !fs.statSync(full).isFile()) {
@@ -109,6 +112,7 @@ function buildMediaList() {
       path: toPublicPath(full),
       name: name,
       folder: "site root",
+      type: "image",
     });
   });
   items.sort(function (a, b) {
@@ -141,6 +145,23 @@ function normalizeCmsImage(value) {
     return cleaned;
   }
   return cleaned;
+}
+
+function normalizeCmsAudio(value) {
+  if (!value) {
+    return "";
+  }
+  var cleaned = String(value).trim().replace(/^\/+/, "");
+  cleaned = cleaned.replace(/^\.\//, "");
+  cleaned = cleaned.replace(/^versions\/modern-gold\//, "");
+  return cleaned;
+}
+
+function normalizeCmsValue(value, key) {
+  if (key && String(key).endsWith(".audio")) {
+    return normalizeCmsAudio(value);
+  }
+  return normalizeCmsImage(value);
 }
 
 const server = http.createServer(async function (req, res) {
@@ -184,7 +205,7 @@ const server = http.createServer(async function (req, res) {
             if (!bindsByFile[file]) {
               bindsByFile[file] = [];
             }
-            bindsByFile[file].push({ key: key, value: normalizeCmsImage(change.to) });
+            bindsByFile[file].push({ key: key, value: normalizeCmsValue(change.to, key) });
           }
         }
       });
@@ -217,14 +238,18 @@ const server = http.createServer(async function (req, res) {
     try {
       var raw = await readBody(req);
       var upload = JSON.parse(raw);
-      var filename = path.basename(String(upload.filename || "upload.jpg"));
+      var filename = path.basename(String(upload.filename || "upload.bin"));
       var data = upload.data || "";
+      var mediaType = upload.type === "audio" ? "audio" : "image";
       if (!filename || !data) {
         send(res, 400, { error: "Missing filename or data" });
         return;
       }
       var buffer = Buffer.from(data, "base64");
-      var dest = path.join(SITE, "gallery", filename);
+      var dest =
+        mediaType === "audio"
+          ? path.join(SITE, "audio", filename)
+          : path.join(SITE, "gallery", filename);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       fs.writeFileSync(dest, buffer);
       send(res, 200, { ok: true, path: toPublicPath(dest) });
@@ -238,5 +263,5 @@ const server = http.createServer(async function (req, res) {
 });
 
 server.listen(PORT, function () {
-  console.log("Image edit API on http://localhost:" + PORT);
+  console.log("Media edit API on http://localhost:" + PORT);
 });

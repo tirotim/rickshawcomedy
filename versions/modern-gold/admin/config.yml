@@ -119,16 +119,31 @@ collections:
     label_singular: "News"
     files:
       - name: page
-        label: "Edit this page"
+        label: "News page & posts"
         file: content/pages/news.json
         preview_path: news.html
         editor:
           preview: true
         fields:
-          - { label: "Page heading", name: heading, widget: string }
-          - { label: "Main text", name: body, widget: text }
-          - { label: "Button text", name: buttonLabel, widget: string }
-          - { label: "Button link (web address)", name: buttonUrl, widget: string, hint: "Must start with https://" }
+          - { label: "Page heading", name: heading, widget: string, default: "News" }
+          - { label: "Introduction (under the heading)", name: body, widget: text, hint: "Short line shown above the list of posts." }
+          - label: "News posts"
+            name: posts
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Click + to add a new post. Drag rows to change order — the first post appears at the top."
+            fields:
+              - label: "Reference ID (optional)"
+                name: id
+                widget: string
+                required: false
+                hint: "Used for links to this post on the page, e.g. 2027-2028-tour. Leave blank to derive from the title."
+              - { label: "Post heading", name: title, widget: string, hint: "e.g. 2027 - 2028 TOUR" }
+              - { label: "Post text", name: body, widget: text }
+              - { label: "Button text (optional)", name: ctaLabel, widget: string, required: false, hint: "e.g. Register your interest" }
+              - { label: "Button link (optional)", name: ctaUrl, widget: string, required: false, hint: "e.g. ./contact.html" }
+          - { label: "Extra button text (optional)", name: buttonLabel, widget: string, required: false, hint: "Shown below all posts, if set." }
+          - { label: "Extra button link (optional)", name: buttonUrl, widget: string, required: false, hint: "Full https:// address or ./page.html" }
 
   - name: contact
     label: "Contact"

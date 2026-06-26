@@ -1,6 +1,13 @@
 {
   "heading": "News",
-  "body": "Catch up on what people are saying and latest announcements — tour news and testimonials can live here alongside your WordPress posts.",
-  "buttonLabel": "Visit news on live site",
-  "buttonUrl": "https://rickshawcomedy.co.uk/?page_id=22"
+  "body": "Latest announcements and tour news from Rick Shaw Comedy.",
+  "posts": [
+    {
+      "id": "2027-2028-tour",
+      "title": "2027 - 2028 TOUR",
+      "body": "Nostalgic Knights Tour will be taking place throughout the UK at a venue near you. Please fill in your email address so that I may contact you, before tickets go on general release. As per our privacy and cookies notice all information will remain private and confidential. Thank you so much for looking at my website.",
+      "ctaLabel": "Register your interest",
+      "ctaUrl": "./contact.html"
+    }
+  ]
 }

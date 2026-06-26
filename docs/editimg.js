@@ -34,7 +34,8 @@
   var exitHref = page === "index.html" ? "./" : "./" + page.replace(/\.html$/, "") + ".html";
 
   var pending = [];
-  var activeImg = null;
+  var activeTarget = null;
+  var pickerMode = "image";
   var mediaItems = [];
   var githubToken = null;
   var saving = false;
@@ -64,6 +65,27 @@
     cleaned = cleaned.replace(/^\.\//, "");
     cleaned = cleaned.replace(/^versions\/modern-gold\//, "");
     return cleaned;
+  }
+
+  function normalizeCmsAudio(value) {
+    if (!value) {
+      return "";
+    }
+    var cleaned = String(value).trim().replace(/^\/+/, "");
+    cleaned = cleaned.replace(/^\.\//, "");
+    cleaned = cleaned.replace(/^versions\/modern-gold\//, "");
+    return cleaned;
+  }
+
+  function normalizeCmsValueForBind(value, bind) {
+    if (bind && String(bind).endsWith(".audio")) {
+      return normalizeCmsAudio(value);
+    }
+    return normalizeCmsImage(value);
+  }
+
+  function pendingLabel(count) {
+    return count ? count + " change(s) ready to save." : "No pending changes.";
   }
 
   function setByPath(obj, dotPath, value) {
@@ -265,6 +287,43 @@
     return true;
   }
 
+  function shouldEditAudio(player) {
+    if (!(player instanceof HTMLElement) || !player.classList.contains("nd-audio-player")) {
+      return false;
+    }
+    if (player.closest(".editimg-ignore") || player.closest(".editimg-toolbar")) {
+      return false;
+    }
+    var audio = player.querySelector("audio.nd-audio-el");
+    if (!audio || !audio.getAttribute("data-editimg-bind")) {
+      return false;
+    }
+    return true;
+  }
+
+  function enableAudioPlayer(player) {
+    if (!player) {
+      return;
+    }
+    player.classList.remove("nd-audio-player--missing");
+    var btn = player.querySelector(".nd-audio-btn");
+    if (!btn) {
+      return;
+    }
+    btn.disabled = false;
+    btn.setAttribute("aria-pressed", "false");
+    if (!btn.querySelector(".nd-audio-btn-icon")) {
+      var icon = document.createElement("span");
+      icon.className = "nd-audio-btn-icon";
+      icon.setAttribute("aria-hidden", "true");
+      btn.insertBefore(icon, btn.firstChild);
+    }
+    var label = btn.querySelector(".nd-audio-btn-label");
+    if (label) {
+      label.textContent = "Play";
+    }
+  }
+
   function escapeAttr(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -311,7 +370,7 @@
     bar.className = "editimg-toolbar";
     bar.innerHTML =
       '<div class="editimg-toolbar-inner">' +
-      '<p class="editimg-toolbar-title"><strong>Image edit mode</strong> — click Replace on any image</p>' +
+      '<p class="editimg-toolbar-title"><strong>Media edit mode</strong> — click Replace on any image or audio sample</p>' +
       '<div class="editimg-toolbar-actions">' +
       '<button type="button" class="btn btn-secondary" data-editimg-connect hidden>Connect GitHub</button>' +
       '<button type="button" class="btn btn-primary" data-editimg-save>Save changes</button>' +
@@ -337,7 +396,7 @@
         '<div class="editimg-modal-panel editimg-auth-panel" role="dialog" aria-modal="true" aria-labelledby="editimg-auth-title">' +
         '<button type="button" class="editimg-modal-close" data-editimg-auth-close aria-label="Close">&times;</button>' +
         '<h2 id="editimg-auth-title" class="editimg-modal-title">Connect GitHub</h2>' +
-        '<p class="editimg-auth-copy">To save image changes on the live site, sign in with a GitHub token that can edit this repository.</p>' +
+        '<p class="editimg-auth-copy">To save media changes on the live site, sign in with a GitHub token that can edit this repository.</p>' +
         '<ol class="editimg-auth-steps">' +
         "<li>Open <a href=\"https://github.com/settings/tokens/new?scopes=repo&amp;description=Rick%20Shaw%20Comedy%20image%20edit\" target=\"_blank\" rel=\"noopener\">GitHub token settings</a> and create a classic token with <strong>repo</strong> scope.</li>" +
         "<li>Paste the token below. It is kept only for this browser session.</li>" +
@@ -385,7 +444,7 @@
             }
             closeAuthModal();
             updateAuthUi();
-            setStatus("Connected to GitHub. You can save image changes now.");
+            setStatus("Connected to GitHub. You can save media changes now.");
           })
           .catch(function (err) {
             if (errorEl) {
@@ -425,13 +484,46 @@
     btn.className = "editimg-replace-btn";
     btn.textContent = "Replace";
     btn.addEventListener("click", function () {
-      openPicker(img, original);
+      openImagePicker(img, original);
     });
     wrap.appendChild(btn);
   }
 
-  function openPicker(img, original) {
-    activeImg = img;
+  function wrapAudioPlayer(player) {
+    if (player.closest(".editimg-wrap")) {
+      return;
+    }
+    var audio = player.querySelector("audio.nd-audio-el");
+    if (!audio) {
+      return;
+    }
+    var wrap = document.createElement("div");
+    wrap.className = "editimg-wrap editimg-wrap-audio";
+    var original = normalizeSrc(audio.getAttribute("src") || "");
+    wrap.dataset.editimgOriginal = original;
+    wrap.dataset.editimgType = "audio";
+    player.parentNode.insertBefore(wrap, player);
+    wrap.appendChild(player);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "editimg-replace-btn editimg-replace-btn--audio";
+    btn.textContent = "Replace audio";
+    btn.addEventListener("click", function () {
+      openPicker({
+        type: "audio",
+        el: audio,
+        wrap: wrap,
+        original: original,
+        bind: audio.getAttribute("data-editimg-bind") || "",
+      });
+    });
+    wrap.appendChild(btn);
+  }
+
+  function openPicker(target) {
+    activeTarget = target;
+    pickerMode = target.type || "image";
     var modal = document.getElementById("editimg-modal");
     if (!modal) {
       modal = buildModal();
@@ -439,8 +531,27 @@
     }
     modal.hidden = false;
     document.body.classList.add("editimg-modal-open");
+    var uploadInput = modal.querySelector("[data-editimg-upload]");
+    var uploadLabel = modal.querySelector("[data-editimg-upload-label]");
+    if (uploadInput) {
+      uploadInput.accept = pickerMode === "audio" ? "audio/*" : "image/*";
+    }
+    if (uploadLabel) {
+      uploadLabel.textContent = pickerMode === "audio" ? "Upload audio" : "Upload image";
+    }
     renderMediaGrid(modal.querySelector(".editimg-media-grid"));
-    modal.querySelector(".editimg-modal-title").textContent = "Choose replacement image";
+    modal.querySelector(".editimg-modal-title").textContent =
+      pickerMode === "audio" ? "Choose replacement audio" : "Choose replacement image";
+  }
+
+  function openImagePicker(img, original) {
+    openPicker({
+      type: "image",
+      el: img,
+      wrap: img.closest(".editimg-wrap"),
+      original: original,
+      bind: img.getAttribute("data-editimg-bind") || "",
+    });
   }
 
   function closePicker() {
@@ -451,7 +562,8 @@
     if (!document.getElementById("editimg-auth-modal") || document.getElementById("editimg-auth-modal").hidden) {
       document.body.classList.remove("editimg-modal-open");
     }
-    activeImg = null;
+    activeTarget = null;
+    pickerMode = "image";
   }
 
   function buildModal() {
@@ -464,7 +576,7 @@
       '<button type="button" class="editimg-modal-close" data-editimg-close aria-label="Close">&times;</button>' +
       '<h2 id="editimg-modal-title" class="editimg-modal-title">Media library</h2>' +
       '<div class="editimg-modal-toolbar">' +
-      '<label class="editimg-upload-btn btn btn-secondary">Upload image<input type="file" accept="image/*" data-editimg-upload hidden /></label>' +
+      '<label class="editimg-upload-btn btn btn-secondary"><span data-editimg-upload-label>Upload image</span><input type="file" accept="image/*" data-editimg-upload hidden /></label>' +
       "</div>" +
       '<div class="editimg-media-grid" aria-live="polite"></div>' +
       "</div>";
@@ -491,63 +603,95 @@
     if (!grid) {
       return;
     }
-    if (!mediaItems.length) {
+    var items = mediaItems.filter(function (item) {
+      return (item.type || "image") === pickerMode;
+    });
+    if (!items.length) {
       grid.innerHTML =
-        '<p class="editimg-empty">No images found. Upload one or run the build to refresh the library.</p>';
+        '<p class="editimg-empty">No ' +
+        (pickerMode === "audio" ? "audio files" : "images") +
+        " found. Upload one or run the build to refresh the library.</p>";
       return;
     }
-    grid.innerHTML = mediaItems
-      .map(function (item) {
-        return (
-          '<button type="button" class="editimg-media-item" data-editimg-pick="' +
-          escapeAttr(item.path) +
-          '">' +
-          '<img src="' +
-          escapeAttr(item.path) +
-          '" alt="" loading="lazy" decoding="async" />' +
-          '<span class="editimg-media-name">' +
-          escapeHtml(item.name) +
-          "</span>" +
-          "</button>"
-        );
-      })
-      .join("");
+    if (pickerMode === "audio") {
+      grid.innerHTML = items
+        .map(function (item) {
+          return (
+            '<button type="button" class="editimg-media-item editimg-media-item--audio" data-editimg-pick="' +
+            escapeAttr(item.path) +
+            '">' +
+            '<span class="editimg-audio-icon" aria-hidden="true"></span>' +
+            '<span class="editimg-media-name">' +
+            escapeHtml(item.name) +
+            "</span>" +
+            "</button>"
+          );
+        })
+        .join("");
+    } else {
+      grid.innerHTML = items
+        .map(function (item) {
+          return (
+            '<button type="button" class="editimg-media-item" data-editimg-pick="' +
+            escapeAttr(item.path) +
+            '">' +
+            '<img src="' +
+            escapeAttr(item.path) +
+            '" alt="" loading="lazy" decoding="async" />' +
+            '<span class="editimg-media-name">' +
+            escapeHtml(item.name) +
+            "</span>" +
+            "</button>"
+          );
+        })
+        .join("");
+    }
 
     grid.querySelectorAll("[data-editimg-pick]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var picked = btn.getAttribute("data-editimg-pick");
-        applyReplacement(activeImg, picked);
+        applyReplacement(activeTarget, picked);
         closePicker();
       });
     });
   }
 
-  function applyReplacement(img, newSrc) {
-    if (!img) {
+  function applyReplacement(target, newSrc) {
+    if (!target || !target.el) {
       return;
     }
-    var wrap = img.closest(".editimg-wrap");
-    var from = wrap ? wrap.dataset.editimgOriginal : normalizeSrc(img.getAttribute("src") || "");
+    var wrap = target.wrap;
+    var from = wrap ? wrap.dataset.editimgOriginal : target.original || "";
     var to = normalizeSrc(newSrc);
-    img.setAttribute("src", to);
+    var bind = target.bind || "";
+
+    if (target.type === "audio") {
+      var audio = target.el;
+      var player = audio.closest(".nd-audio-player");
+      audio.removeAttribute("hidden");
+      audio.setAttribute("src", to);
+      enableAudioPlayer(player);
+    } else {
+      target.el.setAttribute("src", to);
+    }
+
     if (wrap) {
       wrap.classList.add("is-changed");
     }
 
-    var bind = img.getAttribute("data-editimg-bind") || "";
     var existing = pending.findIndex(function (item) {
       if (bind && item.bind) {
         return item.bind === bind;
       }
       return item.from === from && !item.bind && !bind;
     });
-    var entry = { from: from, to: to, bind: bind };
+    var entry = { from: from, to: to, bind: bind, type: target.type || "image" };
     if (existing >= 0) {
       pending[existing] = entry;
     } else {
       pending.push(entry);
     }
-    setStatus(pending.length ? pending.length + " image(s) ready to save." : "No pending changes.");
+    setStatus(pendingLabel(pending.length));
   }
 
   function loadMedia() {
@@ -583,7 +727,7 @@
     return fetch(API_BASE + "/api/editimg/upload", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ filename: file.name, data: base64 }),
+      body: JSON.stringify({ filename: file.name, data: base64, type: pickerMode }),
     })
       .then(function (res) {
         return res.json();
@@ -597,17 +741,24 @@
   }
 
   function uploadMediaGithub(file, base64, token) {
-    var filename = String(file.name || "upload.jpg").replace(/^.*[\\/]/, "");
-    var repoPath = "versions/modern-gold/gallery/" + filename;
+    var filename = String(file.name || (pickerMode === "audio" ? "upload.mp3" : "upload.jpg")).replace(
+      /^.*[\\/]/,
+      ""
+    );
+    var repoPath =
+      pickerMode === "audio"
+        ? "versions/modern-gold/audio/" + filename
+        : "versions/modern-gold/gallery/" + filename;
+    var publicPath = pickerMode === "audio" ? "./audio/" + filename : "./gallery/" + filename;
     return getRepoFile(repoPath, token).then(function (existing) {
       return putRepoFile(
         repoPath,
         base64,
         existing && existing.sha,
-        "Upload image " + filename + " via editimg",
+        "Upload " + (pickerMode === "audio" ? "audio" : "image") + " " + filename + " via editimg",
         token
       ).then(function () {
-        return "./gallery/" + filename;
+        return publicPath;
       });
     });
   }
@@ -615,7 +766,7 @@
   function uploadMedia(file) {
     var token = getAuthToken();
     if (!isLocal && !token) {
-      setStatus("Connect GitHub before uploading new images.", true);
+      setStatus("Connect GitHub before uploading new media.", true);
       openAuthModal();
       return;
     }
@@ -629,7 +780,12 @@
 
       uploadPromise
         .then(function (path) {
-          mediaItems.unshift({ path: path, name: file.name, folder: "gallery" });
+          mediaItems.unshift({
+            path: path,
+            name: file.name,
+            folder: pickerMode === "audio" ? "audio" : "gallery",
+            type: pickerMode,
+          });
           renderMediaGrid(document.querySelector(".editimg-media-grid"));
           setStatus("Uploaded " + file.name);
         })
@@ -684,7 +840,7 @@
               if (!bindsByFile[file]) {
                 bindsByFile[file] = [];
               }
-              bindsByFile[file].push({ key: key, value: normalizeCmsImage(change.to) });
+              bindsByFile[file].push({ key: key, value: normalizeCmsValueForBind(change.to, key) });
             }
           }
         });
@@ -713,7 +869,7 @@
                   cmsPath,
                   encodeGithubContent(JSON.stringify(data, null, 2) + "\n"),
                   cmsFile.sha,
-                  "Update images in " + file + " via editimg",
+                  "Update media in " + file + " via editimg",
                   token
                 );
               });
@@ -725,6 +881,19 @@
       .then(function () {
         return "Saved to GitHub. The live site rebuilds automatically in 1–2 minutes.";
       });
+  }
+
+  function clearChangedWraps() {
+    document.querySelectorAll(".editimg-wrap.is-changed").forEach(function (wrap) {
+      wrap.classList.remove("is-changed");
+      if (wrap.dataset.editimgType === "audio") {
+        var audio = wrap.querySelector("audio.nd-audio-el");
+        wrap.dataset.editimgOriginal = normalizeSrc((audio && audio.getAttribute("src")) || "");
+        return;
+      }
+      var img = wrap.querySelector("img");
+      wrap.dataset.editimgOriginal = normalizeSrc((img && img.getAttribute("src")) || "");
+    });
   }
 
   function saveChanges() {
@@ -742,12 +911,7 @@
       saveChangesLocal()
         .then(function (message) {
           pending = [];
-          document.querySelectorAll(".editimg-wrap.is-changed").forEach(function (wrap) {
-            wrap.classList.remove("is-changed");
-            wrap.dataset.editimgOriginal = normalizeSrc(
-              wrap.querySelector("img").getAttribute("src") || ""
-            );
-          });
+          clearChangedWraps();
           setStatus(message);
         })
         .catch(function (err) {
@@ -771,12 +935,7 @@
     saveChangesGithub(token)
       .then(function (message) {
         pending = [];
-        document.querySelectorAll(".editimg-wrap.is-changed").forEach(function (wrap) {
-          wrap.classList.remove("is-changed");
-          wrap.dataset.editimgOriginal = normalizeSrc(
-            wrap.querySelector("img").getAttribute("src") || ""
-          );
-        });
+        clearChangedWraps();
         setStatus(message);
       })
       .catch(function (err) {
@@ -825,18 +984,24 @@
     }
   });
 
+  document.querySelectorAll(".nd-audio-player").forEach(function (player) {
+    if (shouldEditAudio(player)) {
+      wrapAudioPlayer(player);
+    }
+  });
+
   loadGithubConfig().then(function () {
     updateAuthUi();
     return loadMedia();
   }).then(function () {
     if (isLocal) {
-      setStatus("Image edit mode active.");
+      setStatus("Media edit mode active.");
       return;
     }
     if (getAuthToken()) {
-      setStatus("Image edit mode active. Connected to GitHub.");
+      setStatus("Media edit mode active. Connected to GitHub.");
       return;
     }
-    setStatus("Image edit mode active. Connect GitHub to save changes on the live site.");
+    setStatus("Media edit mode active. Connect GitHub to save changes on the live site.");
   });
 })();

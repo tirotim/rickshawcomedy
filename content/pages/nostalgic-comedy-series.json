@@ -1,0 +1,179 @@
+{
+  "pageTitle": "Nostalgic Comedy Series",
+  "lede": "Classic British sitcoms and comedy — catchphrases, quotes and audio samples from the shows we grew up with.",
+  "intro": "",
+  "mainSectionHeading": "Classic comedy series",
+  "shows": [
+    {
+      "id": "only-fools-and-horses",
+      "title": "Only Fools and Horses",
+      "quotes": [
+        "Cushti, Cushti",
+        "Lovely Jabbly",
+        "You Plonker Rodney",
+        "Mange Tout",
+        "This time next year we'll be millionaires",
+        "He who dares"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "steptoe-and-son",
+      "title": "Steptoe and Son",
+      "quotes": ["Oh Harold - I didn't mean it Harold", "You dirty old man"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "fawlty-towers",
+      "title": "Fawlty Towers",
+      "quotes": [
+        "Don't mention the war Sybil",
+        "Oh Manuel - he's from Barcelona",
+        "I know nothing",
+        "You can see the sea from here Colonel; its over there somewhere between the land and the sea"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "it-aint-half-hot-mum",
+      "title": "It Ain't Half Hot Mum",
+      "quotes": [
+        "Hello My Lovely Boy",
+        "Shut up Lofty",
+        "Whispering Grass",
+        "Move Yourselves",
+        "This is the Concert Party"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "dads-army",
+      "title": "Dad's Army",
+      "quotes": [
+        "Don't tell him your name Pike",
+        "Don't panic Capt. Mainwaring",
+        "They don't like it up em sir",
+        "You stupid Boy Pike"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "rising-damp",
+      "title": "Rising Damp",
+      "quotes": [
+        "Oh Yes Miss Jones",
+        "Your a woman of great refinement Miss Jones",
+        "You have an hour glass figure Miss Jones"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "hi-de-hi",
+      "title": "Hi De Hi",
+      "quotes": ["Hello Campers", "Hello Peggy", "Tonight in the Hawaiian Ballroom", "Hi Di Ho"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "allo-allo",
+      "title": "'Allo 'Allo!",
+      "quotes": [
+        "Simple plans are always the best",
+        "I shall say this only once",
+        "Good Moaning - I was pissing by the door when I heard two shots"
+      ],
+      "image": "",
+      "audio": ""
+    }
+  ],
+  "moreSectionHeading": "More comedy favourites",
+  "moreShows": [
+    {
+      "id": "top-cat",
+      "title": "Top Cat",
+      "quotes": ["The indisputable leader of his gang - Top Cat"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "miss-piggy-kermit",
+      "title": "Miss Piggy and Kermit the Frog",
+      "quotes": ["There's only one gift you should accept on your first date and thats diamonds."],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "top-cat-officer-dibble",
+      "title": "Top Cat and Officer Dibble",
+      "quotes": [],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "on-the-buses",
+      "title": "On the Buses",
+      "quotes": ["I hate you Butler"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "till-death-us-do-part",
+      "title": "Till Death Us Do Part",
+      "quotes": ["You silly moo", "I can bloody read"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "one-foot-in-the-grave",
+      "title": "One Foot in the Grave",
+      "quotes": ["I DON'T BELIEVE IT"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "yogi-bear",
+      "title": "Yogi Bear and Boo Boo",
+      "quotes": ["Roo Boo - I'm smarter than the average bear."],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "reginald-perrin",
+      "title": "The Fall and Rise of Reginald Perrin",
+      "quotes": ["I didn't get where I am today CJ by playing tennis with a cricket bat"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "mrs-browns-boys",
+      "title": "Mrs Brown's Boys",
+      "quotes": ["I've just bought a pair of running shoes"],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "gavin-and-stacey",
+      "title": "Gavin and Stacey",
+      "quotes": [
+        "missed the gym again today that's 10 years in a row",
+        "Oh what's occurring",
+        "I know I feel it"
+      ],
+      "image": "",
+      "audio": ""
+    },
+    {
+      "id": "looney-tunes",
+      "title": "Looney Tunes",
+      "quotes": ["Eh what's up Doc", "Beep Beep"],
+      "image": "",
+      "audio": ""
+    }
+  ]
+}

@@ -1965,6 +1965,45 @@ a:hover {
   margin: 0 0 1.1rem;
 }
 
+.news-intro {
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.news-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.news-post {
+  padding: clamp(0.85rem, 1.5vw, 1.1rem);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(174, 79, 81, 0.2);
+  box-shadow: 0 4px 18px rgba(174, 79, 81, 0.08);
+}
+
+.news-post-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-traditional);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ae4f51;
+}
+
+.news-post-body {
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  line-height: 1.55;
+}
+
+.news-post-cta {
+  margin-top: 0.25rem;
+}
+
 .news-photo {
   margin: 0;
   border-radius: var(--radius-lg);

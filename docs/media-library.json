@@ -3,147 +3,374 @@
     {
       "path": "./24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG",
       "name": "24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./257C3605-36F9-421F-92F1-3A5E78C05592.PNG",
       "name": "257C3605-36F9-421F-92F1-3A5E78C05592.PNG",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./33552.jpg",
       "name": "33552.jpg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG",
       "name": "386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./51D1AA94-8949-473F-9C56-5FC05059F864.PNG",
       "name": "51D1AA94-8949-473F-9C56-5FC05059F864.PNG",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
+    },
+    {
+      "path": "./audio/benny-goodwin.mp3",
+      "name": "benny-goodwin.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/benny-hill.mp3",
+      "name": "benny-hill.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/brian-clough.mp3",
+      "name": "brian-clough.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/caine-michael.mp3",
+      "name": "caine-michael.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/cerry-combover.mp3",
+      "name": "cerry-combover.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/clay-ally.mp3",
+      "name": "clay-ally.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/clint-westwood.mp3",
+      "name": "clint-westwood.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/evan-vance.mp3",
+      "name": "evan-vance.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/ferrol-clown.mp3",
+      "name": "ferrol-clown.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/forest-gump.mp3",
+      "name": "forest-gump.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/frank-carson.mp3",
+      "name": "frank-carson.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/hewy-farmstrong.mp3",
+      "name": "hewy-farmstrong.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/jerry-gaffety.mp3",
+      "name": "jerry-gaffety.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/john-wayne.mp3",
+      "name": "john-wayne.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/marc-molan.mp3",
+      "name": "marc-molan.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/marty-mellow.mp3",
+      "name": "marty-mellow.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/matt-king-coal.mp3",
+      "name": "matt-king-coal.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/mob-ralley.mp3",
+      "name": "mob-ralley.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/mrs-doubtfire.mp3",
+      "name": "mrs-doubtfire.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/mrs-merton.mp3",
+      "name": "mrs-merton.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/nelson-motella.mp3",
+      "name": "nelson-motella.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/pelvis-everley-song.mp3",
+      "name": "pelvis-everley-song.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/polly-darton.mp3",
+      "name": "polly-darton.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/randy-williams.mp3",
+      "name": "randy-williams.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/shranic-franka.mp3",
+      "name": "shranic-franka.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/silly-bowl.mp3",
+      "name": "silly-bowl.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/sing-brosby.mp3",
+      "name": "sing-brosby.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/sollum.mp3",
+      "name": "sollum.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/stan-swordman.mp3",
+      "name": "stan-swordman.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/stewart-james.mp3",
+      "name": "stewart-james.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/urinal-titchie.mp3",
+      "name": "urinal-titchie.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/wc-field.mp3",
+      "name": "wc-field.mp3",
+      "folder": "audio",
+      "type": "audio"
+    },
+    {
+      "path": "./audio/wilson-harold.mp3",
+      "name": "wilson-harold.mp3",
+      "folder": "audio",
+      "type": "audio"
     },
     {
       "path": "./gallery/24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG",
       "name": "24BF6AD1-9DE2-4F85-8E8A-25143FD815C8.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/257C3605-36F9-421F-92F1-3A5E78C05592.PNG",
       "name": "257C3605-36F9-421F-92F1-3A5E78C05592.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG",
       "name": "386B0B93-CC39-4A5A-8215-93212FFCD6CB.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/51D1AA94-8949-473F-9C56-5FC05059F864.PNG",
       "name": "51D1AA94-8949-473F-9C56-5FC05059F864.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/7B5EE70B-9A84-49D0-AAC0-9CD8196C6FD1.PNG",
       "name": "7B5EE70B-9A84-49D0-AAC0-9CD8196C6FD1.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/9A28EB04-3919-40F1-BFD7-6A4EE02ADF77.PNG",
       "name": "9A28EB04-3919-40F1-BFD7-6A4EE02ADF77.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/C8A23A0F-8C5B-43C0-AD61-7E27E942BD6C.PNG",
       "name": "C8A23A0F-8C5B-43C0-AD61-7E27E942BD6C.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/EBD38503-57CF-4502-B3D7-E7425DC82D41.PNG",
       "name": "EBD38503-57CF-4502-B3D7-E7425DC82D41.PNG",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/elvis.jpg",
       "name": "elvis.jpg",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/IMG_2666.jpg",
       "name": "IMG_2666.jpg",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/IMG_2667.jpg",
       "name": "IMG_2667.jpg",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/IMG_7517.jpeg",
       "name": "IMG_7517.jpeg",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/large.png",
       "name": "large.png",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./gallery/rslogo.png",
       "name": "rslogo.png",
-      "folder": "gallery"
+      "folder": "gallery",
+      "type": "image"
     },
     {
       "path": "./Harlequin Diamonds Black And Red.jpg",
       "name": "Harlequin Diamonds Black And Red.jpg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./IMG_2666.jpg",
       "name": "IMG_2666.jpg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./IMG_2667.jpg",
       "name": "IMG_2667.jpg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./IMG_7517.jpeg",
       "name": "IMG_7517.jpeg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./rick-shaw-hero-banner.png",
       "name": "rick-shaw-hero-banner.png",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./rslogo.png",
       "name": "rslogo.png",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./RUB1041.jpg",
       "name": "RUB1041.jpg",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./shawknight.png",
       "name": "shawknight.png",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./shawknight2.png",
       "name": "shawknight2.png",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     },
     {
       "path": "./shawknight3.png",
       "name": "shawknight3.png",
-      "folder": "site root"
+      "folder": "site root",
+      "type": "image"
     }
   ]
 }

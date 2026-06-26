@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css?v=7" />
-    <link rel="stylesheet" href="./modern-gold-theme.css?v=176" />
+    <link rel="stylesheet" href="./modern-gold-theme.css?v=178" />
     <link rel="stylesheet" href="./editimg.css?v=1" />
     <link rel="stylesheet" href="./cmp.css?v=1" />
 
@@ -57,7 +57,9 @@
               <ul class="nav-submenu" id="nav-submenu-shows" role="menu">
                 <li role="none"><a role="menuitem" href="./nostalgic-knights.html">Nostalgic Knights</a></li>
                 <li role="none"><a role="menuitem" href="./nostalgic-days.html">Nostalgic Days</a></li>
+                <li role="none"><a role="menuitem" href="./nostalgic-comedy-series.html">Nostalgic Comedy Series</a></li>
                 <li role="none"><a role="menuitem" href="./evan-vance.html">Evan Vance</a></li>
+                <li role="none"><a role="menuitem" href="./genres.html">Genres</a></li>
                 <li role="none"><a role="menuitem" href="./alter-egos.html">Alter Egos</a></li>
               </ul>
             </li>
@@ -70,54 +72,61 @@
     </header>
 
     <main id="main" class="show-page-main-wrap">
-      <div class="wrap show-page-layout">
-        <aside class="show-sidebar show-sidebar--default" aria-hidden="true">
-          <div class="show-sidebar-sticky">
-            <figure class="show-sidebar-figure">
-              <img
-                class="show-sidebar-img"
-                src="./gallery/IMG_2666.jpg"
-                alt=""
-                width="1200"
-                height="800"
-                decoding="async"
-                loading="eager"
-              />
-            </figure>
-          </div>
-        </aside>
-
-        <div class="show-page-content">
+      <div class="wrap show-page-layout show-page-layout--full">
+        <div class="show-page-content show-page-content--full">
           <header class="show-page-header show-page-header--default">
             <h1 id="ev-heading" class="show-page-title">Evan Vance — The Gagmaster</h1>
-            <p class="show-page-lede">Themed sit-down sets — each heading below is a strand of material.</p>
+            <p class="show-page-lede">Themed sit-down sets — listen to featured Evan Vance material below, or browse the full genre catalogue.</p>
           </header>
-      <section class="section section-repertoire page-first-section show-page-section" aria-labelledby="ev-heading">
-          <article class="repertoire-block">
-            <ul class="character-list character-list--compact">
-              <li>Old Age Stinks</li>
-              <li>Sporting Moments</li>
-              <li>What Children Say</li>
-              <li>Wacky British Phrases</li>
-              <li>Families</li>
-              <li>Poonarmi Stories</li>
-              <li>Covid 19</li>
-              <li>Bizarre Menus</li>
-              <li>Poetry in Motion</li>
-              <li>Animal Lovers</li>
-              <li>Christmas</li>
-              <li>Newsnight</li>
-              <li>Horrible Holidays</li>
-              <li>Ridiculous Signage</li>
-            </ul>
-          </article>
+          <section class="section section-repertoire page-first-section show-page-section" aria-labelledby="ev-heading">
+            <article class="repertoire-block">
+              <!-- cms:evan-vance:start -->
+            <div class="live-featured-grid" aria-label="Featured Evan Vance sets">
+              <article class="live-featured-card" id="old-age-set">
+                <figure class="live-featured-figure">
+                  <div class="live-featured-placeholder" aria-hidden="true"></div>
+                </figure>
+                <div class="live-featured-meta">
+                  <h3 class="live-featured-title">Old Age Set</h3>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/old-age-set.mp3" data-editimg-bind="evan-vance.json:featuredSets.0.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Old Age Set">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
 
-          <nav class="page-crosslinks" aria-label="Related strands">
-            <a class="btn btn-secondary" href="./nostalgic-knights.html">Nostalgic Knights</a>
-            <a class="btn btn-secondary" href="./nostalgic-days.html">Nostalgic Days</a>
-            <a class="btn btn-secondary" href="./alter-egos.html">Alter Egos</a>
-          </nav>
-      </section>
+              <article class="live-featured-card" id="i-got-to-thinking">
+                <figure class="live-featured-figure">
+                  <div class="live-featured-placeholder" aria-hidden="true"></div>
+                </figure>
+                <div class="live-featured-meta">
+                  <h3 class="live-featured-title">I got to thinking</h3>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/i-got-to-thinking.mp3" data-editimg-bind="evan-vance.json:featuredSets.1.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for I got to thinking">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <p class="genres-page-link-wrap">
+              <a class="btn btn-secondary" href="./genres.html">Browse all genres</a>
+            </p>
+          <!-- cms:evan-vance:end -->
+            </article>
+
+            <nav class="page-crosslinks" aria-label="Related strands">
+              <a class="btn btn-secondary" href="./genres.html">Genres</a>
+              <a class="btn btn-secondary" href="./nostalgic-knights.html">Nostalgic Knights</a>
+              <a class="btn btn-secondary" href="./nostalgic-days.html">Nostalgic Days</a>
+              <a class="btn btn-secondary" href="./alter-egos.html">Alter Egos</a>
+            </nav>
+          </section>
         </div>
       </div>
     </main>

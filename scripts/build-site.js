@@ -131,15 +131,26 @@ function renderSongTitle(songTitle) {
   return '                  <p class="nd-caricature-song"><em>\'' + escapeHtml(songTitle) + "'</em></p>";
 }
 
-function renderAudioPlayer(character) {
+function audioBindFromImageBind(bind) {
+  if (!bind) {
+    return "";
+  }
+  return bind.replace(/\.image$/, ".audio");
+}
+
+function renderAudioPlayer(character, bind) {
   if (character.comingSoon) {
     return '                  <p class="nd-caricature-status">Coming soon</p>';
   }
 
   var audioSrc = normalizeAssetPath(character.audio);
+  var bindAttr = editimgBindAttr(bind);
   if (!audioSrc) {
     return (
       '                  <div class="nd-audio-player nd-audio-player--missing">\n' +
+      (bind
+        ? '                    <audio class="nd-audio-el" preload="none" hidden' + bindAttr + "></audio>\n"
+        : "") +
       '                    <button type="button" class="nd-audio-btn" disabled aria-label="Audio sample unavailable for ' +
       escapeHtml(character.title) +
       '">\n' +
@@ -153,7 +164,9 @@ function renderAudioPlayer(character) {
     '                  <div class="nd-audio-player">\n' +
     '                    <audio class="nd-audio-el" preload="none" src="' +
     escapeHtml(audioSrc) +
-    '"></audio>\n' +
+    '"' +
+    bindAttr +
+    '></audio>\n' +
     '                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for ' +
     escapeHtml(character.title) +
     '">\n' +
@@ -190,7 +203,7 @@ function renderCharacter(character, bind) {
     "\n" +
     renderSongTitle(character.songTitle) +
     "\n" +
-    renderAudioPlayer(character) +
+    renderAudioPlayer(character, audioBindFromImageBind(bind)) +
     "\n" +
     "                </div>\n" +
     "              </article>"
@@ -323,6 +336,329 @@ function renderNkMusical(character, bind) {
     "                </div>\n" +
     "              </article>"
   );
+}
+
+function renderNcsQuotes(quotes) {
+  if (!quotes || !quotes.length) {
+    return "";
+  }
+  return (
+    '                  <ul class="ncs-quotes">\n' +
+    quotes
+      .map(function (quote) {
+        return "                    <li>" + escapeHtml(quote) + "</li>";
+      })
+      .join("\n") +
+    "\n                  </ul>"
+  );
+}
+
+function renderNcsAudio(show, bind) {
+  var audioSrc = normalizeAssetPath(show.audio);
+  if (audioSrc) {
+    return renderAudioPlayer(show, bind);
+  }
+  return (
+    '                  <div class="nd-audio-player nd-audio-player--missing">\n' +
+    (bind
+      ? '                    <audio class="nd-audio-el" preload="none" hidden' + editimgBindAttr(bind) + "></audio>\n"
+      : "") +
+    '                    <button type="button" class="nd-audio-btn" disabled aria-label="Audio for ' +
+    escapeHtml(show.title) +
+    '">\n' +
+    '                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>\n' +
+    '                      <span class="nd-audio-btn-label">Audio</span>\n' +
+    "                    </button>\n" +
+    "                  </div>"
+  );
+}
+
+function renderNcsShow(show, bind, jsonFile, field) {
+  var image = normalizeAssetPath(show.image);
+  var bindAttr = editimgBindAttr(bind);
+  var figure;
+  if (image) {
+    figure =
+      '                <figure class="ncs-figure">\n' +
+      '                  <img src="' +
+      escapeHtml(image) +
+      '"' +
+      bindAttr +
+      ' alt="" width="400" height="500" loading="lazy" decoding="async" />\n' +
+      "                </figure>";
+  } else {
+    figure =
+      '                <figure class="ncs-figure">\n' +
+      '                  <div class="ncs-placeholder" aria-hidden="true"></div>\n' +
+      "                </figure>";
+  }
+
+  return (
+    '              <article class="ncs-card" id="' +
+    escapeHtml(show.id || characterId(show)) +
+    '">\n' +
+    figure +
+    '\n                <div class="ncs-meta">\n' +
+    '                  <h3 class="ncs-title">' +
+    escapeHtml(show.title) +
+    "</h3>\n" +
+    renderNcsQuotes(show.quotes) +
+    "\n" +
+    renderNcsAudio(show, audioBindFromImageBind(bind)) +
+    "\n                </div>\n              </article>"
+  );
+}
+
+function renderNcsGrid(shows, jsonFile, fieldName) {
+  if (!shows || !shows.length) {
+    return "";
+  }
+  return shows
+    .map(function (show, index) {
+      return renderNcsShow(show, jsonFile + ":" + fieldName + "." + index + ".image", jsonFile, fieldName);
+    })
+    .join("\n\n");
+}
+
+function renderLiveFeaturedFigure(item, bind) {
+  var image = normalizeAssetPath(item.image);
+  var bindAttr = editimgBindAttr(bind);
+  if (image) {
+    return (
+      '                <figure class="live-featured-figure">\n' +
+      '                  <img src="' +
+      escapeHtml(image) +
+      '"' +
+      bindAttr +
+      ' alt="" width="480" height="320" loading="lazy" decoding="async" />\n' +
+      "                </figure>"
+    );
+  }
+  return (
+    '                <figure class="live-featured-figure">\n' +
+    '                  <div class="live-featured-placeholder" aria-hidden="true"></div>\n' +
+    "                </figure>"
+  );
+}
+
+function renderLiveFeaturedCard(item, bind) {
+  return (
+    '              <article class="live-featured-card" id="' +
+    escapeHtml(characterId(item)) +
+    '">\n' +
+    renderLiveFeaturedFigure(item, bind) +
+    '\n                <div class="live-featured-meta">\n' +
+    '                  <h3 class="live-featured-title">' +
+    escapeHtml(item.title) +
+    "</h3>\n" +
+    renderAudioPlayer(item, audioBindFromImageBind(bind)) +
+    "\n                </div>\n              </article>"
+  );
+}
+
+function renderLiveFeaturedGrid(items, jsonFile, fieldName) {
+  if (!items || !items.length) {
+    return "";
+  }
+  return items
+    .map(function (item, index) {
+      return renderLiveFeaturedCard(item, jsonFile + ":" + fieldName + "." + index + ".image");
+    })
+    .join("\n\n");
+}
+
+function renderGenreItem(item, bind) {
+  return (
+    '                  <li class="genres-item" id="' +
+    escapeHtml(characterId(item)) +
+    '">\n' +
+    '                    <span class="genres-item-title">' +
+    escapeHtml(item.title) +
+    "</span>\n" +
+    renderAudioPlayer(item, bind) +
+    "\n                  </li>"
+  );
+}
+
+function renderGenresColumn(items, jsonFile, fieldName) {
+  if (!items || !items.length) {
+    return "";
+  }
+  return (
+    '              <ul class="genres-list">\n' +
+    items
+      .map(function (item, index) {
+        return renderGenreItem(item, jsonFile + ":" + fieldName + "." + index + ".audio");
+      })
+      .join("\n") +
+    "\n              </ul>"
+  );
+}
+
+function buildEvanVance() {
+  var data = readJson("evan-vance.json");
+  var html = fs.readFileSync(path.join(SITE, "evan-vance.html"), "utf8");
+
+  html = html.replace(
+    /<h1 id="ev-heading" class="show-page-title">[\s\S]*?<\/h1>/,
+    '<h1 id="ev-heading" class="show-page-title">' + escapeHtml(data.pageTitle) + "</h1>"
+  );
+  html = html.replace(
+    /<p class="show-page-lede">[\s\S]*?<\/p>/,
+    '<p class="show-page-lede">' + escapeHtml(data.lede) + "</p>"
+  );
+  fs.writeFileSync(path.join(SITE, "evan-vance.html"), html, "utf8");
+
+  var block =
+    '            <div class="live-featured-grid" aria-label="Featured Evan Vance sets">\n' +
+    renderLiveFeaturedGrid(data.featuredSets, "evan-vance.json", "featuredSets") +
+    "\n            </div>\n" +
+    (data.genresLinkUrl
+      ? '            <p class="genres-page-link-wrap">\n' +
+        '              <a class="btn btn-secondary" href="' +
+        escapeHtml(normalizeAssetPath(data.genresLinkUrl)) +
+        '">' +
+        escapeHtml(data.genresLinkLabel || "Browse all genres") +
+        "</a>\n            </p>"
+      : "");
+
+  replaceBlock(
+    path.join(SITE, "evan-vance.html"),
+    "<!-- cms:evan-vance:start -->",
+    "<!-- cms:evan-vance:end -->",
+    block
+  );
+}
+
+function buildGenres() {
+  var data = readJson("genres.json");
+  var html = fs.readFileSync(path.join(SITE, "genres.html"), "utf8");
+
+  html = html.replace(
+    /<h1 id="genres-heading" class="show-page-title">[\s\S]*?<\/h1>/,
+    '<h1 id="genres-heading" class="show-page-title">' + escapeHtml(data.pageTitle) + "</h1>"
+  );
+  html = html.replace(
+    /<p class="show-page-lede">[\s\S]*?<\/p>/,
+    '<p class="show-page-lede">' + escapeHtml(data.lede) + "</p>"
+  );
+  fs.writeFileSync(path.join(SITE, "genres.html"), html, "utf8");
+
+  var block =
+    '            <div class="live-featured-grid live-featured-grid--genres" aria-label="Featured live sets">\n' +
+    renderLiveFeaturedGrid(data.featuredLive, "genres.json", "featuredLive") +
+    "\n            </div>\n" +
+    '            <div class="genres-catalog" aria-label="Genre catalogue">\n' +
+    '              <div class="genres-columns">\n' +
+    '                <div class="genres-col">\n' +
+    renderGenresColumn(data.genresLeft, "genres.json", "genresLeft") +
+    "\n                </div>\n" +
+    '                <div class="genres-col">\n' +
+    renderGenresColumn(data.genresRight, "genres.json", "genresRight") +
+    "\n                </div>\n" +
+    "              </div>\n" +
+    "            </div>";
+
+  replaceBlock(path.join(SITE, "genres.html"), "<!-- cms:genres:start -->", "<!-- cms:genres:end -->", block);
+}
+
+function buildNostalgicComedySeries() {
+  var data = readJson("nostalgic-comedy-series.json");
+  var html = fs.readFileSync(path.join(SITE, "nostalgic-comedy-series.html"), "utf8");
+
+  html = html.replace(
+    /<h1 id="ncs-heading" class="show-page-title">[\s\S]*?<\/h1>/,
+    '<h1 id="ncs-heading" class="show-page-title">' + escapeHtml(data.pageTitle) + "</h1>"
+  );
+  html = html.replace(
+    /<p class="show-page-lede">[\s\S]*?<\/p>/,
+    '<p class="show-page-lede">' + escapeHtml(data.lede) + "</p>"
+  );
+  fs.writeFileSync(path.join(SITE, "nostalgic-comedy-series.html"), html, "utf8");
+
+  var block =
+    (data.intro
+      ? '            <p class="repertoire-lede">\n              ' + escapeHtml(data.intro) + "\n            </p>\n"
+      : "") +
+    '            <h2 class="repertoire-subhead">' +
+    escapeHtml(data.mainSectionHeading || "Classic comedy series") +
+    "</h2>\n" +
+    '            <div class="ncs-grid" aria-label="Classic comedy series">\n' +
+    renderNcsGrid(data.shows, "nostalgic-comedy-series.json", "shows") +
+    "\n            </div>\n" +
+    '            <h2 class="repertoire-subhead ncs-more-heading">' +
+    escapeHtml(data.moreSectionHeading || "More comedy favourites") +
+    "</h2>\n" +
+    '            <div class="ncs-grid ncs-grid--more" aria-label="More comedy favourites">\n' +
+    renderNcsGrid(data.moreShows, "nostalgic-comedy-series.json", "moreShows") +
+    "\n            </div>";
+
+  replaceBlock(
+    path.join(SITE, "nostalgic-comedy-series.html"),
+    "<!-- cms:nostalgic-comedy-series:start -->",
+    "<!-- cms:nostalgic-comedy-series:end -->",
+    block
+  );
+}
+
+function updateShowsNav() {
+  var ncsLink =
+    '<li role="none"><a role="menuitem" href="./nostalgic-comedy-series.html">Nostalgic Comedy Series</a></li>';
+  var ncsPattern =
+    /<li role="none"><a role="menuitem" href="\.\/nostalgic-days\.html">Nostalgic Days<\/a><\/li>\n(?!\s*<li role="none"><a role="menuitem" href="\.\/nostalgic-comedy-series\.html">)/;
+  var genresLink = '<li role="none"><a role="menuitem" href="./genres.html">Genres</a></li>';
+  var genresPattern =
+    /<li role="none"><a role="menuitem" href="\.\/evan-vance\.html">Evan Vance<\/a><\/li>\n(?!\s*<li role="none"><a role="menuitem" href="\.\/genres\.html">)/;
+
+  function patchHtml(html) {
+    var next = html;
+    if (next.indexOf("nostalgic-comedy-series.html") === -1) {
+      next = next.replace(ncsPattern, function (match) {
+        return match + "                " + ncsLink + "\n";
+      });
+    }
+    if (next.indexOf("genres.html") === -1) {
+      next = next.replace(genresPattern, function (match) {
+        return match + "                " + genresLink + "\n";
+      });
+    }
+    return next;
+  }
+
+  fs.readdirSync(SITE).forEach(function (name) {
+    if (!name.endsWith(".html")) {
+      return;
+    }
+    var filePath = path.join(SITE, name);
+    var html = fs.readFileSync(filePath, "utf8");
+    var next = patchHtml(html);
+    if (next !== html) {
+      fs.writeFileSync(filePath, next, "utf8");
+    }
+  });
+
+  var adminIndex = path.join(SITE, "admin", "index.html");
+  if (fs.existsSync(adminIndex)) {
+    var adminHtml = fs.readFileSync(adminIndex, "utf8");
+    var nextAdmin = patchHtml(adminHtml.replace(/\.\/nostalgic-comedy-series\.html/g, "../nostalgic-comedy-series.html").replace(
+      /\.\/nostalgic-days\.html/g,
+      "../nostalgic-days.html"
+    ));
+    if (nextAdmin.indexOf("nostalgic-comedy-series.html") === -1) {
+      nextAdmin = adminHtml.replace(
+        /<li role="none"><a role="menuitem" href="\.\.\/nostalgic-days\.html">Nostalgic Days<\/a><\/li>\n(?!\s*<li role="none"><a role="menuitem" href="\.\.\/nostalgic-comedy-series\.html">)/,
+        function (match) {
+          return (
+            match +
+            '                <li role="none"><a role="menuitem" href="../nostalgic-comedy-series.html">Nostalgic Comedy Series</a></li>\n'
+          );
+        }
+      );
+    }
+    if (nextAdmin !== adminHtml) {
+      fs.writeFileSync(adminIndex, nextAdmin, "utf8");
+    }
+  }
 }
 
 function buildNostalgicKnights() {
@@ -464,35 +800,68 @@ function buildNostalgicDays() {
   );
 }
 
+function renderNewsPost(post) {
+  var block =
+    '              <article class="news-post" id="' +
+    escapeHtml(post.id || slugify(post.title)) +
+    '">\n' +
+    '                <h2 class="news-post-title">' +
+    escapeHtml(post.title) +
+    "</h2>\n" +
+    '                <p class="news-post-body">' +
+    escapeHtml(post.body) +
+    "</p>\n";
+  if (post.ctaUrl && post.ctaLabel) {
+    block +=
+      '                <a class="btn btn-secondary news-post-cta" href="' +
+      escapeHtml(normalizeAssetPath(post.ctaUrl)) +
+      '">' +
+      escapeHtml(post.ctaLabel) +
+      "</a>\n";
+  }
+  block += "              </article>";
+  return block;
+}
+
 function buildNews() {
   var data = readJson("news.json");
   var block =
     '            <h1 class="section-heading">' +
     escapeHtml(data.heading) +
     "</h1>\n" +
-    "            <p>\n" +
-    "              " +
-    escapeHtml(data.body) +
-    "\n" +
-    "            </p>\n" +
-    '            <a class="btn btn-secondary" href="' +
-    escapeHtml(data.buttonUrl) +
-    '">' +
-    escapeHtml(data.buttonLabel) +
-    "</a>";
+    (data.body
+      ? "            <p class=\"news-intro\">\n              " + escapeHtml(data.body) + "\n            </p>\n"
+      : "");
+  if (data.posts && data.posts.length) {
+    block +=
+      '            <div class="news-posts" aria-label="News posts">\n' +
+      data.posts.map(renderNewsPost).join("\n\n") +
+      "\n            </div>";
+  }
+  if (data.buttonUrl && data.buttonLabel) {
+    block +=
+      '\n            <a class="btn btn-secondary" href="' +
+      escapeHtml(data.buttonUrl) +
+      '">' +
+      escapeHtml(data.buttonLabel) +
+      "</a>";
+  }
 
-  replaceBlock(path.join(SITE, "news.html"), "<!-- cms:news:start -->", "<!-- cms:news:end -->", block  );
+  replaceBlock(path.join(SITE, "news.html"), "<!-- cms:news:start -->", "<!-- cms:news:end -->", block);
 }
 
 var IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"]);
+var AUDIO_EXT = new Set([".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"]);
 var EDITIMG_PAGES = [
   "index",
   "nostalgic-knights",
   "nostalgic-days",
+  "nostalgic-comedy-series",
   "news",
   "contact",
   "gallery",
   "evan-vance",
+  "genres",
   "alter-egos",
   "privacy",
 ];
@@ -541,7 +910,7 @@ function toPublicMediaPath(absPath) {
   return "./" + rel;
 }
 
-function scanMediaDir(dir, base, out) {
+function scanMediaDir(dir, base, out, extSet, type) {
   if (!fs.existsSync(dir)) {
     return;
   }
@@ -549,24 +918,26 @@ function scanMediaDir(dir, base, out) {
     var full = path.join(dir, name);
     var stat = fs.statSync(full);
     if (stat.isDirectory()) {
-      scanMediaDir(full, base, out);
+      scanMediaDir(full, base, out, extSet, type);
       return;
     }
     var ext = path.extname(name).toLowerCase();
-    if (!IMAGE_EXT.has(ext)) {
+    if (!extSet.has(ext)) {
       return;
     }
     out.push({
       path: toPublicMediaPath(full),
       name: name,
       folder: path.relative(base, dir).split(path.sep).join("/") || "site root",
+      type: type,
     });
   });
 }
 
 function buildMediaLibrary() {
   var items = [];
-  scanMediaDir(path.join(SITE, "gallery"), SITE, items);
+  scanMediaDir(path.join(SITE, "gallery"), SITE, items, IMAGE_EXT, "image");
+  scanMediaDir(path.join(SITE, "audio"), SITE, items, AUDIO_EXT, "audio");
   fs.readdirSync(SITE).forEach(function (name) {
     var full = path.join(SITE, name);
     if (!fs.existsSync(full) || !fs.statSync(full).isFile()) {
@@ -580,6 +951,7 @@ function buildMediaLibrary() {
       path: toPublicMediaPath(full),
       name: name,
       folder: "site root",
+      type: "image",
     });
   });
   items = items.filter(function (item, index, arr) {
@@ -600,7 +972,7 @@ function generateEditimgRoutes() {
     var target = "../../" + (page === "index" ? "index.html" : page + ".html") + "?editimg";
     var html =
       "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\" />\n" +
-      "<title>Image edit mode</title>\n<script>location.replace(" +
+      "<title>Media edit mode</title>\n<script>location.replace(" +
       JSON.stringify(target) +
       ");</script>\n</head>\n<body></body>\n</html>\n";
     fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
@@ -780,6 +1152,10 @@ function renderContactField(field) {
 
 buildNostalgicKnights();
 buildNostalgicDays();
+buildNostalgicComedySeries();
+buildEvanVance();
+buildGenres();
+updateShowsNav();
 buildNews();
 buildContact();
 buildMediaLibrary();

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-US" class="site-auth-pending">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Genres — sit-down comedy sets by theme, Rick Shaw Comedy." />
+    <title>Genres | Rick Shaw Comedy</title>
+    <link rel="icon" href="./rslogo.png?v=2" type="image/png" />
+    <link rel="apple-touch-icon" href="./rslogo.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=7" />
+    <link rel="stylesheet" href="./modern-gold-theme.css?v=178" />
+    <link rel="stylesheet" href="./editimg.css?v=1" />
+    <link rel="stylesheet" href="./cmp.css?v=1" />
+
+      <link rel="stylesheet" href="./site-auth.css?v=3" />
+    <script src="./site-auth.js?v=3"></script>
+  </head>
+  <body id="top" class="modern-gold-site show-page show-page--genres">
+    <div class="mg-backdrop" aria-hidden="true">
+      <span class="mg-harlequin-tile mg-harlequin-tile--gold" aria-hidden="true"></span>
+      <span class="mg-harlequin-tile mg-harlequin-tile--coral" aria-hidden="true"></span>
+    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner wrap">
+        <a class="brand" href="./index.html">
+          <span class="brand-logo-frame"><img src="./rslogo.png?v=2" width="42" height="42" alt="" class="brand-logo" decoding="async" /></span>
+          <span class="brand-text">Rick Shaw Comedy</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+          <ul class="nav-row">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html#biography">Bio</a></li>
+            <li class="nav-dropdown">
+              <button
+                type="button"
+                class="nav-dropdown-trigger"
+                id="nav-shows-trigger"
+                aria-expanded="false"
+                aria-controls="nav-submenu-shows"
+                aria-haspopup="true"
+              >
+                Shows
+                <span class="nav-dropdown-chevron" aria-hidden="true"></span>
+              </button>
+              <ul class="nav-submenu" id="nav-submenu-shows" role="menu">
+                <li role="none"><a role="menuitem" href="./nostalgic-knights.html">Nostalgic Knights</a></li>
+                <li role="none"><a role="menuitem" href="./nostalgic-days.html">Nostalgic Days</a></li>
+                <li role="none"><a role="menuitem" href="./nostalgic-comedy-series.html">Nostalgic Comedy Series</a></li>
+                <li role="none"><a role="menuitem" href="./evan-vance.html">Evan Vance</a></li>
+                <li role="none"><a role="menuitem" href="./genres.html">Genres</a></li>
+                <li role="none"><a role="menuitem" href="./alter-egos.html">Alter Egos</a></li>
+              </ul>
+            </li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./news.html">News</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="show-page-main-wrap">
+      <div class="wrap show-page-layout show-page-layout--full">
+        <div class="show-page-content show-page-content--full">
+          <header class="show-page-header show-page-header--showbiz">
+            <h1 id="genres-heading" class="show-page-title">Genres</h1>
+            <p class="show-page-lede">Sit-down comedy by theme — Rick Shaw live, Evan Vance live, and a catalogue of genre sets.</p>
+          </header>
+          <section class="section section-repertoire page-first-section show-page-section" aria-labelledby="genres-heading">
+            <article class="repertoire-block">
+              <!-- cms:genres:start -->
+            <div class="live-featured-grid live-featured-grid--genres" aria-label="Featured live sets">
+              <article class="live-featured-card" id="rick-shaw-live">
+                <figure class="live-featured-figure">
+                  <img src="./shawknight3.png" data-editimg-bind="genres.json:featuredLive.0.image" alt="" width="480" height="320" loading="lazy" decoding="async" />
+                </figure>
+                <div class="live-featured-meta">
+                  <h3 class="live-featured-title">Rick Shaw 'Live'</h3>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/rick-shaw-live.mp3" data-editimg-bind="genres.json:featuredLive.0.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Rick Shaw 'Live'">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="live-featured-card" id="evan-vance-live">
+                <figure class="live-featured-figure">
+                  <img src="./gallery/IMG_2666.jpg" data-editimg-bind="genres.json:featuredLive.1.image" alt="" width="480" height="320" loading="lazy" decoding="async" />
+                </figure>
+                <div class="live-featured-meta">
+                  <h3 class="live-featured-title">Evan Vance 'Live'</h3>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/evan-vance.mp3" data-editimg-bind="genres.json:featuredLive.1.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Evan Vance 'Live'">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="genres-catalog" aria-label="Genre catalogue">
+              <div class="genres-columns">
+                <div class="genres-col">
+              <ul class="genres-list">
+                  <li class="genres-item" id="marriage">
+                    <span class="genres-item-title">Marriage</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/marriage.mp3" data-editimg-bind="genres.json:genresLeft.0.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Marriage">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="christmas-santa">
+                    <span class="genres-item-title">Christmas &amp; Santa</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/christmas-santa.mp3" data-editimg-bind="genres.json:genresLeft.1.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Christmas &amp; Santa">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="a-to-z-comedy">
+                    <span class="genres-item-title">A to Z Comedy</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/a-to-z-comedy.mp3" data-editimg-bind="genres.json:genresLeft.2.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for A to Z Comedy">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="i-got-to-thinking">
+                    <span class="genres-item-title">I got to thinking</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/i-got-to-thinking.mp3" data-editimg-bind="genres.json:genresLeft.3.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for I got to thinking">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="transport">
+                    <span class="genres-item-title">Transport</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/transport.mp3" data-editimg-bind="genres.json:genresLeft.4.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Transport">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="unusual-phrases">
+                    <span class="genres-item-title">Unusual Phrases</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/unusual-phrases.mp3" data-editimg-bind="genres.json:genresLeft.5.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Unusual Phrases">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="signs">
+                    <span class="genres-item-title">Signs</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/signs.mp3" data-editimg-bind="genres.json:genresLeft.6.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Signs">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+              </ul>
+                </div>
+                <div class="genres-col">
+              <ul class="genres-list">
+                  <li class="genres-item" id="sport">
+                    <span class="genres-item-title">Sport</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/sport.mp3" data-editimg-bind="genres.json:genresRight.0.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Sport">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="its-just-shit">
+                    <span class="genres-item-title">Its Just Shit</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/its-just-shit.mp3" data-editimg-bind="genres.json:genresRight.1.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Its Just Shit">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="learning-english">
+                    <span class="genres-item-title">Learning the English Language</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/learning-english.mp3" data-editimg-bind="genres.json:genresRight.2.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Learning the English Language">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="animals">
+                    <span class="genres-item-title">Animals</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/animals.mp3" data-editimg-bind="genres.json:genresRight.3.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Animals">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="family">
+                    <span class="genres-item-title">Family</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/family.mp3" data-editimg-bind="genres.json:genresRight.4.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Family">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="menu">
+                    <span class="genres-item-title">Menu</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/menu.mp3" data-editimg-bind="genres.json:genresRight.5.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Menu">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+                  <li class="genres-item" id="work-in-progress">
+                    <span class="genres-item-title">Work in Progress New Comedy Ideas</span>
+                  <div class="nd-audio-player">
+                    <audio class="nd-audio-el" preload="none" src="./audio/genres/work-in-progress.mp3" data-editimg-bind="genres.json:genresRight.6.audio"></audio>
+                    <button type="button" class="nd-audio-btn" aria-pressed="false" aria-label="Play audio for Work in Progress New Comedy Ideas">
+                      <span class="nd-audio-btn-icon" aria-hidden="true"></span>
+                      <span class="nd-audio-btn-label">Play</span>
+                    </button>
+                  </div>
+                  </li>
+              </ul>
+                </div>
+              </div>
+            </div>
+          <!-- cms:genres:end -->
+            </article>
+
+            <nav class="page-crosslinks" aria-label="Related strands">
+              <a class="btn btn-secondary" href="./evan-vance.html">Evan Vance</a>
+              <a class="btn btn-secondary" href="./nostalgic-knights.html">Nostalgic Knights</a>
+              <a class="btn btn-secondary" href="./nostalgic-days.html">Nostalgic Days</a>
+              <a class="btn btn-secondary" href="./alter-egos.html">Alter Egos</a>
+            </nav>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <nav class="jump-to-top-bar wrap" aria-label="Back to top">
+      <a class="jump-to-top" href="#top">Jump to top</a>
+    </nav>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p class="footer-tagline">
+          <strong>Rick Shaw Comedy</strong> — Welsh impressionist, mimic and comedian. Live variety built around <strong>Nostalgic Knights</strong>, with booking and enquiries through Contact.
+        </p>
+        <p class="footer-disclaimer">
+          <strong>Note:</strong> Some material references older comedy styles and may not suit every taste. Performances are aimed at adult audiences.
+        </p>
+        <nav class="footer-legal" aria-label="Legal and policies">
+          <a href="./index.html">Home</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./privacy.html">Privacy notice</a>
+          <a href="#" data-cmp-open>Cookie settings</a>
+          <a href="./privacy.html#copyright">Terms of use</a>
+          <a href="./privacy.html#disclaimer">Disclaimer</a>
+        </nav>
+        <p class="footer-cms">
+          <a class="footer-cms-btn" href="./admin/">Edit site</a>
+        </p>
+        <p class="copyright">&copy; 2026 Rick Shaw Comedy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./cmp.js" defer></script>
+    <script src="./editimg.js" defer></script>
+    <script src="./site.js" defer></script>
+  </body>
+</html>

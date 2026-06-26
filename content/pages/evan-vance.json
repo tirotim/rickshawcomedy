@@ -1,0 +1,20 @@
+{
+  "pageTitle": "Evan Vance — The Gagmaster",
+  "lede": "Themed sit-down sets — listen to featured Evan Vance material below, or browse the full genre catalogue.",
+  "featuredSets": [
+    {
+      "id": "old-age-set",
+      "title": "Old Age Set",
+      "image": "",
+      "audio": "audio/old-age-set.mp3"
+    },
+    {
+      "id": "i-got-to-thinking",
+      "title": "I got to thinking",
+      "image": "",
+      "audio": "audio/i-got-to-thinking.mp3"
+    }
+  ],
+  "genresLinkLabel": "Browse all genres",
+  "genresLinkUrl": "./genres.html"
+}

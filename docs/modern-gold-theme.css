@@ -3020,3 +3020,237 @@ body.home-page.modern-gold-site .home-bio .bio-heading {
     grid-template-columns: minmax(5rem, 6.75rem) minmax(0, 1fr);
   }
 }
+
+/* --- Nostalgic Comedy Series --- */
+.modern-gold-site .show-page-layout--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.modern-gold-site .show-page-content--full {
+  max-width: none;
+}
+
+.modern-gold-site .ncs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+  margin: 1.25rem 0 0;
+}
+
+.modern-gold-site .ncs-more-heading {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(174, 79, 81, 0.2);
+}
+
+.modern-gold-site .ncs-card {
+  scroll-margin-top: clamp(4.5rem, 10vw, 6rem);
+  display: grid;
+  grid-template-columns: minmax(5rem, 7.5rem) minmax(0, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  align-items: start;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(174, 79, 81, 0.2);
+  box-shadow: 0 4px 18px rgba(174, 79, 81, 0.1);
+}
+
+.modern-gold-site .ncs-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.modern-gold-site .ncs-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px dashed rgba(174, 79, 81, 0.35);
+  background:
+    linear-gradient(145deg, rgba(246, 229, 177, 0.35), rgba(255, 255, 255, 0.85)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(174, 79, 81, 0.04) 0,
+      rgba(174, 79, 81, 0.04) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+}
+
+.modern-gold-site .ncs-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.modern-gold-site .ncs-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.modern-gold-site .ncs-title {
+  margin: 0;
+  font-family: var(--font-traditional);
+  font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ae4f51;
+}
+
+.modern-gold-site .ncs-quotes {
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+
+.modern-gold-site .ncs-quotes li {
+  margin: 0.18rem 0;
+  font-size: clamp(0.72rem, 1vw, 0.84rem);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.modern-gold-site .ncs-quotes li::marker {
+  color: rgba(174, 79, 81, 0.55);
+}
+
+@media (min-width: 720px) {
+  .modern-gold-site .ncs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Evan Vance featured sets & Genres --- */
+.modern-gold-site .live-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 1.25rem 0 0;
+}
+
+.modern-gold-site .live-featured-grid--genres {
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.modern-gold-site .live-featured-card {
+  scroll-margin-top: clamp(4.5rem, 10vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(0.85rem, 1.5vw, 1.1rem);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(174, 79, 81, 0.2);
+  box-shadow: 0 4px 18px rgba(174, 79, 81, 0.1);
+}
+
+.modern-gold-site .live-featured-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.modern-gold-site .live-featured-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px dashed rgba(174, 79, 81, 0.35);
+  background:
+    linear-gradient(145deg, rgba(246, 229, 177, 0.35), rgba(255, 255, 255, 0.85)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(174, 79, 81, 0.04) 0,
+      rgba(174, 79, 81, 0.04) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+}
+
+.modern-gold-site .live-featured-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.modern-gold-site .live-featured-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+}
+
+.modern-gold-site .live-featured-title {
+  margin: 0;
+  font-family: var(--font-traditional);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ae4f51;
+}
+
+.modern-gold-site .genres-page-link-wrap {
+  margin: 1.5rem 0 0;
+}
+
+.modern-gold-site .genres-catalog {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(174, 79, 81, 0.2);
+}
+
+.modern-gold-site .genres-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.modern-gold-site .genres-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.modern-gold-site .genres-item {
+  scroll-margin-top: clamp(4.5rem, 10vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(174, 79, 81, 0.15);
+}
+
+.modern-gold-site .genres-item-title {
+  font-family: var(--font-traditional);
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #ae4f51;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .modern-gold-site .live-featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modern-gold-site .genres-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
