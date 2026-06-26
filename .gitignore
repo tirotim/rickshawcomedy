@@ -1,4 +1,6 @@
 .DS_Store
 *.swp
 *~
-.cursor/
+.site-auth-config.json
+docs/site-auth-config.json
+versions/modern-gold/site-auth-config.json

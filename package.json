@@ -7,6 +7,7 @@
     "build:site": "npm run build && npm run sync",
     "cms": "npx decap-server",
     "cms:site": "python3 -m http.server 8080",
-    "editimg:api": "node scripts/editimg-api.js"
+    "editimg:api": "node scripts/editimg-api.js",
+    "deploy": "python3 scripts/deploy-sftp.py"
   }
 }

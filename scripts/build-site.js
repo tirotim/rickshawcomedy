@@ -5,6 +5,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const ROOT = path.join(__dirname, "..");
 const CONTENT = path.join(ROOT, "content", "pages");
@@ -666,6 +667,80 @@ function buildContact() {
   replaceBlock(path.join(SITE, "contact.html"), "<!-- cms:contact:start -->", "<!-- cms:contact:end -->", block);
 }
 
+function readSiteAuthConfig() {
+  var filePath = path.join(ROOT, "content", "site-auth.json");
+  if (!fs.existsSync(filePath)) {
+    return { enabled: false };
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeSiteAuthConfig() {
+  var config = readSiteAuthConfig();
+  var password = process.env.SITE_VIEW_PASSWORD || "RickShaw2026";
+  var output = {
+    enabled: !!config.enabled,
+    title: config.title || "Rick Shaw Comedy",
+    message: config.message || "Enter the preview password to continue.",
+    passwordHash: crypto.createHash("sha256").update(password).digest("hex"),
+  };
+  if (!output.enabled) {
+    delete output.passwordHash;
+  }
+  fs.writeFileSync(path.join(SITE, "site-auth-config.json"), JSON.stringify(output, null, 2) + "\n", "utf8");
+}
+
+function injectSiteAuth() {
+  var config = readSiteAuthConfig();
+  if (!config.enabled) {
+    return;
+  }
+
+  var snippet =
+    '    <link rel="stylesheet" href="./site-auth.css?v=3" />\n' +
+    '    <script src="./site-auth.js?v=3"></script>\n';
+
+  function authAssetPrefix(filePath) {
+    var depth = path.relative(SITE, path.dirname(filePath)).split(path.sep).filter(Boolean).length;
+    return depth ? "../".repeat(depth) : "./";
+  }
+
+  function injectHtml(filePath) {
+    var html = fs.readFileSync(filePath, "utf8");
+    var prefix = authAssetPrefix(filePath);
+    var localSnippet = snippet.replace(/\.\//g, prefix);
+    html = html.replace(/^\s*<link rel="stylesheet" href="[^"]*site-auth\.css[^"]*" \/?>\s*$/gm, "");
+    html = html.replace(/^\s*<script src="[^"]*site-auth\.js[^"]*"><\/script>\s*$/gm, "");
+    html = html.replace("</head>", localSnippet + "  </head>");
+    html = html.replace(/<html([^>]*)>/i, function (match, attrs) {
+      if (/\bsite-auth-pending\b/.test(attrs)) {
+        return match;
+      }
+      if (/\bclass="/.test(attrs)) {
+        return match.replace(/class="([^"]*)"/, 'class="$1 site-auth-pending"');
+      }
+      return "<html" + attrs + ' class="site-auth-pending">';
+    });
+    fs.writeFileSync(filePath, html, "utf8");
+  }
+
+  fs.readdirSync(SITE).forEach(function (name) {
+    var filePath = path.join(SITE, name);
+    if (name.endsWith(".html") && fs.statSync(filePath).isFile()) {
+      injectHtml(filePath);
+      return;
+    }
+    if (!fs.statSync(filePath).isDirectory()) {
+      return;
+    }
+    fs.readdirSync(filePath).forEach(function (nested) {
+      if (nested.endsWith(".html")) {
+        injectHtml(path.join(filePath, nested));
+      }
+    });
+  });
+}
+
 function renderContactField(field) {
   var id = "contact-" + field.name;
   var required = field.required ? ' required aria-required="true"' : "";
@@ -710,4 +785,6 @@ buildContact();
 buildMediaLibrary();
 generateEditimgRoutes();
 applyImageOverridesAll();
+writeSiteAuthConfig();
+injectSiteAuth();
 console.log("Built site content into versions/modern-gold/");
